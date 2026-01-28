@@ -1,0 +1,441 @@
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding-top: 80px;
+    perspective: 1000px;
+}
+
+.hero-bg-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(var(--glass-border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--glass-border) 1px, transparent 1px);
+    background-size: 50px 50px;
+    mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+    transition: transform 0.1s ease-out;
+}
+
+.orb-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--secondary-color), transparent);
+    top: -100px;
+    left: -100px;
+}
+
+.orb-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--primary-color), transparent);
+    bottom: -100px;
+    right: -100px;
+}
+
+.orb-3 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, #7000ff, var(--secondary-color));
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.3;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    gap: 4rem;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.hero-greeting {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.hero-name {
+    font-size: 5.5rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(to right, var(--text-color), var(--text-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Glitch Effect */
+.glitch {
+    position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -1px 0 var(--secondary-color);
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -1px 0 var(--primary-color);
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% {
+        clip: rect(70px, 9999px, 86px, 0);
+    }
+
+    20% {
+        clip: rect(28px, 9999px, 86px, 0);
+    }
+
+    40% {
+        clip: rect(7px, 9999px, 20px, 0);
+    }
+
+    60% {
+        clip: rect(52px, 9999px, 5px, 0);
+    }
+
+    80% {
+        clip: rect(81px, 9999px, 57px, 0);
+    }
+
+    100% {
+        clip: rect(44px, 9999px, 63px, 0);
+    }
+}
+
+@keyframes glitch-anim-2 {
+    0% {
+        clip: rect(11px, 9999px, 55px, 0);
+    }
+
+    20% {
+        clip: rect(75px, 9999px, 7px, 0);
+    }
+
+    40% {
+        clip: rect(6px, 9999px, 80px, 0);
+    }
+
+    60% {
+        clip: rect(25px, 9999px, 20px, 0);
+    }
+
+    80% {
+        clip: rect(83px, 9999px, 4px, 0);
+    }
+
+    100% {
+        clip: rect(4px, 9999px, 34px, 0);
+    }
+}
+
+.hero-role {
+    font-size: 2rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+}
+
+.typing-text {
+    color: var(--secondary-color);
+    margin-left: 10px;
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.4);
+}
+
+.cursor {
+    display: inline-block;
+    width: 3px;
+    background-color: var(--text-color);
+    animation: blink 1s step-end infinite;
+    margin-left: 5px;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 500px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.btn {
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Outfit', sans-serif;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: width 0.3s ease;
+    z-index: -1;
+}
+
+.btn:hover::before {
+    width: 100%;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: #fff;
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.btn-primary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 40px var(--accent-glow);
+}
+
+.btn-secondary {
+    background: var(--glass-bg);
+    color: var(--text-color);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+    transform: translateY(-5px);
+}
+
+.hero-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    perspective: 1000px;
+}
+
+.profile-card {
+    padding: 0.5rem;
+    background: transparent;
+    border-radius: 50%;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Liquid Blob Animation Behind */
+.profile-card::before {
+    content: '';
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    z-index: -1;
+    animation: liquid 6s ease-in-out infinite alternate;
+    filter: blur(20px);
+    opacity: 0.6;
+}
+
+.profile-card::after {
+    content: '';
+    position: absolute;
+    width: 110%;
+    height: 110%;
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    z-index: -2;
+    animation: liquid 8s ease-in-out infinite alternate-reverse;
+    filter: blur(10px);
+    opacity: 0.4;
+}
+
+@keyframes liquid {
+    0% {
+        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        transform: rotate(0deg);
+    }
+
+    100% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        transform: rotate(360deg);
+    }
+}
+
+.profile-image {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    display: block;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.5);
+    /* darkened bg within circle */
+}
+
+.profile-card:hover .profile-image {
+    transform: scale(1.05);
+    border-color: var(--primary-color);
+}
+
+/* Animations */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s forwards;
+}
+
+.fade-in-right {
+    opacity: 0;
+    transform: translateX(30px);
+    animation: fadeInRight 0.8s forwards;
+}
+
+.delay-1 {
+    animation-delay: 0.2s;
+}
+
+.delay-2 {
+    animation-delay: 0.4s;
+}
+
+.delay-3 {
+    animation-delay: 0.6s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 968px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 6rem;
+    }
+
+    .hero-text {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .hero-name {
+        font-size: 3.5rem;
+    }
+
+    .hero-role {
+        font-size: 1.5rem;
+        flex-direction: column;
+        height: auto;
+        gap: 0.5rem;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .profile-image {
+        width: 250px;
+        height: 250px;
+    }
+}

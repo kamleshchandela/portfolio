@@ -1,0 +1,16 @@
+/* Cleaned up for new design */
+body {
+  margin: 0;
+  padding: 0;
+  cursor: none;
+  /* Hide default cursor */
+}
+
+a,
+button,
+input,
+textarea,
+select {
+  cursor: none;
+  /* Ensure interactive elements don't show default cursor */
+}

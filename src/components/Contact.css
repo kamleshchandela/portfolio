@@ -1,0 +1,182 @@
+.contact-section {
+    padding: 8rem 2rem 4rem;
+    position: relative;
+    z-index: 10;
+    background: linear-gradient(to top, var(--bg-color), transparent);
+}
+
+.contact-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    gap: 5rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.contact-info {
+    flex: 1;
+    min-width: 300px;
+}
+
+.contact-heading {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+    background: linear-gradient(to right, var(--text-color), var(--text-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+}
+
+.contact-text {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    font-size: 1.15rem;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-social {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    padding: 1.2rem;
+    background: var(--glass-bg);
+    border-radius: 16px;
+    border: 1px solid var(--glass-border);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-social::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.5s;
+}
+
+.contact-social:hover::before {
+    transform: translateX(100%);
+}
+
+.contact-social:hover {
+    background: var(--glass-bg);
+    color: var(--text-color);
+    transform: translateX(10px);
+    border-color: var(--primary-color);
+    box-shadow: 0 5px 20px var(--card-shadow);
+}
+
+.contact-social svg {
+    color: var(--primary-color);
+    transition: transform 0.3s;
+}
+
+.contact-social:hover svg {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.contact-form {
+    flex: 1.2;
+    min-width: 300px;
+    padding: 3rem;
+    border-radius: 30px;
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 20px 50px var(--card-shadow);
+    position: relative;
+}
+
+.contact-form::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 32px;
+    background: linear-gradient(45deg, var(--primary-color), transparent, var(--secondary-color));
+    z-index: -1;
+    opacity: 0.3;
+}
+
+.form-group {
+    margin-bottom: 2rem;
+}
+
+.form-group label {
+    display: block;
+    color: var(--primary-color);
+    margin-bottom: 0.8rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 1.2rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: var(--text-color);
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 20px var(--accent-glow);
+    background: var(--card-bg);
+    transform: translateY(-2px);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 1.2rem;
+    background: linear-gradient(135deg, var(--primary-color), #0066ff);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.submit-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px var(--accent-glow);
+    background: linear-gradient(135deg, var(--secondary-color), #7000ff);
+    color: #fff;
+}

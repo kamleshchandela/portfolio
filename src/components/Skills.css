@@ -1,0 +1,125 @@
+.skills-section {
+    padding: 8rem 2rem;
+    position: relative;
+    z-index: 10;
+    background: radial-gradient(circle at 10% 20%, rgba(112, 0, 255, 0.05) 0%, transparent 40%);
+}
+
+.section-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 5rem;
+    color: var(--text-color);
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    margin: 1rem auto 0;
+    border-radius: 2px;
+}
+
+.section-title .highlight {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px var(--accent-glow));
+}
+
+.skills-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 2.5rem;
+    padding: 0 1rem;
+}
+
+.skill-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 2.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 10px var(--card-shadow);
+}
+
+.skill-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, var(--primary-color), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+    filter: blur(20px);
+}
+
+.skill-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--primary-color);
+    box-shadow: 0 15px 40px var(--card-shadow);
+}
+
+.skill-card:hover::before {
+    opacity: 0.15;
+}
+
+.skill-icon-wrapper {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+}
+
+.skill-card:hover .skill-icon-wrapper {
+    transform: scale(1.3) rotate(5deg);
+    filter: drop-shadow(0 0 15px var(--primary-color));
+}
+
+.skill-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-color);
+    letter-spacing: 0.5px;
+    z-index: 1;
+}
+
+.skill-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(transparent, var(--primary-color), transparent 30%);
+    animation: rotateGlow 4s linear infinite;
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.skill-card:hover .skill-glow {
+    opacity: 0.1;
+}
+
+@keyframes rotateGlow {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

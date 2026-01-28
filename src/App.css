@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Dark Mode Defaults */
+  --bg-color: #050505;
+  --text-color: #ffffff;
+  --text-secondary: #a0a0a0;
+  --primary-color: #00f3ff;
+  --secondary-color: #ff00ff;
+  --accent-glow: rgba(0, 243, 255, 0.5);
+
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --card-bg: rgba(20, 20, 20, 0.6);
+  --card-shadow: rgba(0, 0, 0, 0.5);
+
+  --nav-bg: rgba(10, 10, 10, 0.5);
+  --timeline-line: #1a1a1a;
+
+  /* Shared Font Family Var */
+  --font-main: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+[data-theme="light"] {
+  --bg-color: #f0f2f5;
+  --text-color: #1a1a1a;
+  --text-secondary: #555555;
+  --primary-color: #0066ff;
+  --secondary-color: #d600d6;
+  --accent-glow: rgba(0, 102, 255, 0.3);
+
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(0, 0, 0, 0.05);
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-shadow: rgba(0, 0, 0, 0.1);
+
+  --nav-bg: rgba(255, 255, 255, 0.7);
+  --timeline-line: #e0e0e0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  /* Readable body text */
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  overflow-x: hidden;
+  line-height: 1.6;
+  /* Better readability */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+.nav-logo {
+  font-family: var(--font-main);
+  /* Professional Headings */
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

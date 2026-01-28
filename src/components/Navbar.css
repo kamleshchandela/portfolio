@@ -1,0 +1,207 @@
+.navbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    padding: 1rem 2rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border-radius: 50px;
+    /* "Donoside se gol" */
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.scrolled {
+    padding: 0.8rem 2rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+}
+
+.nav-logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: var(--text-color);
+    font-family: 'Outfit', sans-serif;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-link {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    /* Readable Font */
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 0;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.3px;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-color);
+    font-weight: 600;
+    transform: translateY(-2px);
+}
+
+/* Dot indicator */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 4px;
+    /* Dot */
+    border-radius: 50%;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 4px;
+}
+
+.theme-toggle {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0.6rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1.5rem;
+}
+
+.theme-toggle:hover {
+    background: var(--primary-color);
+    color: #fff;
+    transform: rotate(15deg);
+    border-color: var(--primary-color);
+}
+
+/* Mobile Toggle - Hidden on Desktop */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .navbar {
+        width: 92%;
+        top: 15px;
+        padding: 0.8rem 1.5rem;
+        border-radius: 30px;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+        /* Show toggle only on mobile */
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        /* Below navbar */
+        left: 0;
+        width: 100%;
+        /* HIGHER CONTRAST BACKGROUND FOR READABILITY */
+        background: var(--bg-color);
+        /* Fallback */
+        background: rgba(15, 15, 15, 0.98);
+        /* Almost black opaque background */
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 2rem;
+        margin-top: 10px;
+        border-radius: 20px;
+        border: 1px solid var(--glass-border);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+
+        /* Animation: Slide/Fade */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
+        z-index: 1001;
+        /* Ensure on top */
+    }
+
+    .nav-links.open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: all;
+    }
+
+    .nav-link {
+        font-size: 1.35rem;
+        /* Large text */
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem;
+        font-weight: 700;
+        /* Bold text */
+        color: #ffffff;
+        /* White text for max contrast */
+        letter-spacing: 0.5px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        /* Subtle shadow for lift */
+    }
+
+    /* Change color on hover even in mobile for feedback */
+    .nav-link:active {
+        color: var(--primary-color);
+        transform: scale(0.98);
+    }
+
+    .theme-toggle {
+        margin-left: 0;
+        margin-top: 1rem;
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+}
