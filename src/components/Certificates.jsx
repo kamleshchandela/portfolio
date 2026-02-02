@@ -6,27 +6,35 @@ const Certificates = () => {
     const certificates = [
         {
             id: 1,
-            title: "Advanced React Patterns",
-            issuer: "Meta & Coursera",
-            date: "Nov 2023",
-            image: "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=500&h=300&fit=crop",
-            link: "#"
+            title: "Software Engineering Job Simulation",
+            issuer: "JPMorgan Chase & Co.",
+            date: "Jan 2026",
+            image: "https://res.cloudinary.com/dsuhb6swy/image/upload/v1770035861/Screenshot_2026-01-18_103209_gw3ch7.png",
+            link: "https://res.cloudinary.com/dsuhb6swy/image/upload/v1770035861/Screenshot_2026-01-18_103209_gw3ch7.png"
         },
         {
             id: 2,
-            title: "AWS Certified Solutions Architect",
-            issuer: "Amazon Web Services",
-            date: "Aug 2023",
-            image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&h=300&fit=crop",
-            link: "#"
+            title: "Code Contest",
+            issuer: "Enginow",
+            date: "Jan 2026",
+            image: "https://res.cloudinary.com/dsuhb6swy/image/upload/v1770035861/Screenshot_2026-01-15_161547_azamxy.png",
+            link: "https://res.cloudinary.com/dsuhb6swy/image/upload/v1770035861/Screenshot_2026-01-15_161547_azamxy.png"
         },
         {
             id: 3,
-            title: "Full Stack Web Development",
-            issuer: "Udemy",
-            date: "Jan 2023",
-            image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=300&fit=crop",
-            link: "#"
+            title: "Software Architecture Job Simulation",
+            issuer: "AWS",
+            date: "Jan 2026",
+            image: "https://res.cloudinary.com/dsuhb6swy/image/upload/v1770035861/Screenshot_2026-02-01_150943_mhftkz.png",
+            link: "https://res.cloudinary.com/dsuhb6swy/image/upload/v1770035861/Screenshot_2026-02-01_150943_mhftkz.png"
+        },
+        {
+            id: 4,
+            title: "Advanced Software Engineering Job Simulation",
+            issuer: "Walmart | Global Tech",
+            date: "Jan 2026",
+            image: "https://res.cloudinary.com/dsuhb6swy/image/upload/v1770035861/Screenshot_2026-02-01_151008_czcmqf.png",
+            link: "https://res.cloudinary.com/dsuhb6swy/image/upload/v1770035861/Screenshot_2026-02-01_151008_czcmqf.png"
         }
     ];
 
@@ -39,7 +47,7 @@ const Certificates = () => {
                         <div className="cert-image-wrapper">
                             <img src={cert.image} alt={cert.title} className="cert-image" />
                             <div className="cert-overlay">
-                                <a href={cert.link} className="cert-link">
+                                <a target='_blank' href={cert.link} className="cert-link">
                                     <ExternalLink size={24} />
                                     <span>Verify</span>
                                 </a>

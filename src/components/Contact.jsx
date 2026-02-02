@@ -39,8 +39,8 @@ const Contact = () => {
 
                     <div className="contact-links">
                         <a href="#" className="contact-social"><Mail /> <span>kamlesh.b.chandela.cg@gmail.com</span></a>
-                        <a href="https://www.linkedin.com/in/kamlesh-chandela/" className="contact-social"><Linkedin /> <span>Kamlesh Chandela</span></a>
-                        <a href="https://github.com/kamleshchandela" className="contact-social"><Github /> <span>Kamlesh Chandela</span></a>
+                        <a target='_blank' href="https://www.linkedin.com/in/kamlesh-chandela/" className="contact-social"><Linkedin /> <span>Kamlesh Chandela</span></a>
+                        <a target='_blank' href="https://github.com/kamleshchandela" className="contact-social"><Github /> <span>Kamlesh Chandela</span></a>
                     </div>
                 </div>
 

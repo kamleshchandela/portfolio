@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Skills from './components/Skills';
@@ -53,9 +53,23 @@ function App() {
     if (theme === 'dark') playOff(); else playOn(); // Sound feedback on theme switch
   };
 
+  // Handle sound feedback when mute state changes
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
+    // Play sound when unmuted
+    if (!muted) {
+      playOn();
+    }
+  }, [muted, playOn]);
+
   const toggleMute = () => {
     setMuted(prev => !prev);
-    if (muted) playOn(); // Sound feedback when unmuting
   };
 
   const handleLoadingComplete = () => {
