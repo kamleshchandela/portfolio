@@ -4,6 +4,7 @@ export const useSound = (theme = 'dark') => {
     const [muted, setMuted] = useState(true);
     const [isPlaying, setIsPlaying] = useState(false);
     const timeoutRef = useRef(null);
+    const audioContextRef = useRef(null);
 
     // Initial Scales
     // Light Mode: C Major Pentatonic (Bright, Happy) - C5, D5, E5, G5, A5, C6
