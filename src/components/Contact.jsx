@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Linkedin, Github, Send } from 'lucide-react';
+import { Mail, Linkedin, Github, Send, Phone, Code } from 'lucide-react';
 import './Contact.css';
 
 const Contact = () => {
@@ -38,9 +38,11 @@ const Contact = () => {
                     </p>
 
                     <div className="contact-links">
-                        <a href="#" className="contact-social"><Mail /> <span>kamlesh.b.chandela.cg@gmail.com</span></a>
+                        <a href="mailto:kamlesh.b.chandela.cg@gmail.com" className="contact-social"><Mail /> <span>kamlesh.b.chandela.cg@gmail.com</span></a>
+                        <a href="tel:+919979265140" className="contact-social"><Phone /> <span>9979265140</span></a>
                         <a target='_blank' href="https://www.linkedin.com/in/kamlesh-chandela/" className="contact-social"><Linkedin /> <span>Kamlesh Chandela</span></a>
                         <a target='_blank' href="https://github.com/kamleshchandela" className="contact-social"><Github /> <span>Kamlesh Chandela</span></a>
+                        <a target='_blank' href="https://leetcode.com/u/KamleshChandela/" className="contact-social"><Code /> <span>LeetCode Profile</span></a>
                     </div>
                 </div>
 

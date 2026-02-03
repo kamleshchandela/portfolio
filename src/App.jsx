@@ -13,6 +13,7 @@ import './App.css';
 import LoadingScreen from './components/LoadingScreen';
 import ScrollReveal from './components/ScrollReveal';
 import SoundToggle from './components/SoundToggle';
+import ChatBot from './components/ChatBot';
 import { useSound } from './hooks/useSound';
 
 function App() {
@@ -92,6 +93,7 @@ function App() {
           <ScrollReveal><Experience /></ScrollReveal>
           <ScrollReveal><Contact /></ScrollReveal>
           <Footer />
+          <ChatBot /> {/* Added ChatBot component */}
         </>
       )}
     </div>
