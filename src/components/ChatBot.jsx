@@ -14,7 +14,7 @@ const ChatBot = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     // User requested to use their key for everyone.
-    const API_KEY = "AIzaSyDClCSS2E9gIj0IW6-yFgVyj_DCm_7ry8g";
+    const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
     const messagesEndRef = useRef(null);
 
@@ -44,12 +44,11 @@ const ChatBot = () => {
         setMessages(prev => [...prev, { type: 'user', content: userMessage }]);
         setIsLoading(true);
 
-        // Optimized order: Flash 1.5 -> Pro 1.5 (Backup Quota) -> Flash 2.0
+        // Optimized order: Gemini 2.0 Flash (Primary) -> Lite -> 1.5 Flash (Backup)
         const modelsToTry = [
-            "gemini-1.5-flash",
-            "gemini-1.5-pro",
             "gemini-2.0-flash",
-            "gemini-1.5-flash-8b"
+            "gemini-2.0-flash-lite",
+            "gemini-1.5-flash"
         ];
 
         let success = false;
@@ -60,7 +59,8 @@ const ChatBot = () => {
         for (const modelName of modelsToTry) {
             try {
                 const genAI = new GoogleGenerativeAI(API_KEY);
-                const model = genAI.getGenerativeModel({ model: modelName });
+                // Gemini 2.0 requires v1beta
+                const model = genAI.getGenerativeModel({ model: modelName }, { apiVersion: 'v1beta' });
 
                 const chat = model.startChat({
                     history: [

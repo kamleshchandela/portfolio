@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Mail, Linkedin, Github, Send, Phone, Code } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import './Contact.css';
 
 const Contact = () => {
+    const form = useRef();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -18,11 +20,27 @@ const Contact = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setStatus('sending');
-        setTimeout(() => {
-            setStatus('success');
-            setFormData({ name: '', email: '', message: '' });
-            setTimeout(() => setStatus(''), 3000);
-        }, 1500);
+
+        emailjs.sendForm(
+            import.meta.env.VITE_EMAILJS_SERVICE_ID,
+            import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+            form.current,
+            {
+                publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+            }
+        )
+            .then(
+                () => {
+                    setStatus('success');
+                    setFormData({ name: '', email: '', message: '' });
+                    setTimeout(() => setStatus(''), 3000);
+                },
+                (error) => {
+                    console.error('FAILED...', error.text);
+                    setStatus('error');
+                    setTimeout(() => setStatus(''), 3000);
+                },
+            );
     };
 
     return (
@@ -38,7 +56,7 @@ const Contact = () => {
                     </p>
 
                     <div className="contact-links">
-                        <a href="mailto:kamlesh.b.chandela.cg@gmail.com" className="contact-social"><Mail /> <span>kamlesh.b.chandela.cg@gmail.com</span></a>
+                        <a href="mailto:chandelakamlesh3@gmail.com" className="contact-social"><Mail /> <span>chandelakamlesh3@gmail.com</span></a>
                         <a href="tel:+919979265140" className="contact-social"><Phone /> <span>9979265140</span></a>
                         <a target='_blank' href="https://www.linkedin.com/in/kamlesh-chandela/" className="contact-social"><Linkedin /> <span>Kamlesh Chandela</span></a>
                         <a target='_blank' href="https://github.com/kamleshchandela" className="contact-social"><Github /> <span>Kamlesh Chandela</span></a>
@@ -46,7 +64,7 @@ const Contact = () => {
                     </div>
                 </div>
 
-                <form className="contact-form card-glass" onSubmit={handleSubmit}>
+                <form className="contact-form card-glass" ref={form} onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Name</label>
                         <input
@@ -82,7 +100,7 @@ const Contact = () => {
                     </div>
 
                     <button type="submit" className="submit-btn">
-                        {status === 'sending' ? 'Sending...' : (status === 'success' ? 'Message Sent!' : <><Send size={18} /> Send Message</>)}
+                        {status === 'sending' ? 'Sending...' : (status === 'success' ? 'Message Sent!' : status === 'error' ? 'Failed to Send' : <><Send size={18} /> Send Message</>)}
                     </button>
                 </form>
             </div>
