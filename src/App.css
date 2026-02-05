@@ -89,3 +89,29 @@ button,
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+/* Global Responsive Typography */
+@media (max-width: 1024px) {
+  html {
+    font-size: 95%;
+    /* Slightly smaller base font on tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 90%;
+    /* Smaller base font on mobile */
+  }
+
+  .app {
+    overflow-x: hidden;
+    /* Prevent horizontal scroll on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 85%;
+  }
+}
