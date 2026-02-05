@@ -1,0 +1,125 @@
+.theme-rope-container {
+    position: fixed;
+    top: -80px;
+    /* Start higher up */
+    right: 40px;
+    /* Move to the side, away from Navbar */
+    z-index: 2000;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform-origin: top center;
+    transition: transform 0.1s;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.rope-line {
+    width: 2px;
+    height: 200px;
+    /* Length of the rope */
+    background: linear-gradient(to bottom, #555, #888);
+    position: relative;
+    z-index: 1;
+}
+
+/* The Handle/Bulb */
+.rope-handle {
+    position: relative;
+    top: -2px;
+    /* Connect seamlessly */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.handle-knob {
+    width: 14px;
+    height: 20px;
+    background: #333;
+    border-radius: 4px 4px 10px 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    z-index: 2;
+}
+
+.handle-bottom {
+    width: 24px;
+    height: 35px;
+    background: var(--primary-color);
+    /* Matches theme */
+    border-radius: 12px;
+    margin-top: -5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+    transition: background 0.3s ease;
+    border: 2px solid #333;
+}
+
+/* Add a little light/glow indicator on the handle */
+.handle-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #fff;
+    opacity: 0.8;
+}
+
+/* Hover Effect */
+.theme-rope-container:hover .handle-bottom {
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+/* Pull Animation */
+.theme-rope-container.pulled {
+    animation: pullAndBounce 1s ease-in-out;
+}
+
+@keyframes pullAndBounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    20% {
+        transform: translateY(40px);
+        /* Pull down */
+    }
+
+    40% {
+        transform: translateY(-15px);
+        /* Spring release up */
+    }
+
+    60% {
+        transform: translateY(10px);
+        /* Settle bounce */
+    }
+
+    80% {
+        transform: translateY(-5px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .theme-rope-container {
+        right: 20px;
+        /* Move closer to edge on mobile */
+    }
+
+    .rope-line {
+        height: 160px;
+        /* Adjusted length for mobile */
+    }
+}

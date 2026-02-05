@@ -14,6 +14,7 @@ import LoadingScreen from './components/LoadingScreen';
 import ScrollReveal from './components/ScrollReveal';
 import SoundToggle from './components/SoundToggle';
 import ChatBot from './components/ChatBot';
+import ThemeRope from './components/ThemeRope';
 import { useSound } from './hooks/useSound';
 
 function App() {
@@ -83,6 +84,7 @@ function App() {
       {loading && <LoadingScreen onComplete={handleLoadingComplete} />}
       {!loading && (
         <>
+          <ThemeRope theme={theme} toggleTheme={toggleTheme} />
           <SoundToggle muted={muted} toggleMute={toggleMute} />
           <Navbar theme={theme} toggleTheme={toggleTheme} />
           <Hero />
