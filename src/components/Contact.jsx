@@ -56,7 +56,7 @@ const Contact = () => {
                     </p>
 
                     <div className="contact-links">
-                        <a href="mailto:chandelakamlesh3@gmail.com" className="contact-social"><Mail /> <span>chandelakamlesh3@gmail.com</span></a>
+                        <a href="mailto:chandelakamlesh3@gmail.com" className="contact-social"><Mail /> <span>kamlesh.b.chandela.cg@gmail.com</span></a>
                         <a href="tel:+919979265140" className="contact-social"><Phone /> <span>9979265140</span></a>
                         <a target='_blank' href="https://www.linkedin.com/in/kamlesh-chandela/" className="contact-social"><Linkedin /> <span>Kamlesh Chandela</span></a>
                         <a target='_blank' href="https://github.com/kamleshchandela" className="contact-social"><Github /> <span>Kamlesh Chandela</span></a>
@@ -84,7 +84,7 @@ const Contact = () => {
                             value={formData.email}
                             onChange={handleChange}
                             required
-                            placeholder="john@example.com"
+                            placeholder="john@gmail.com"
                         />
                     </div>
                     <div className="form-group">

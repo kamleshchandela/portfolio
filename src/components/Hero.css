@@ -405,17 +405,36 @@
     }
 }
 
+@media (max-width: 1024px) {
+    .hero-content {
+        gap: 2rem;
+        padding: 0 1.5rem;
+    }
+
+    .hero-name {
+        font-size: 4.5rem;
+    }
+
+    .profile-image {
+        width: 300px;
+        height: 300px;
+    }
+}
+
 @media (max-width: 968px) {
     .hero-content {
-        flex-direction: column;
+        flex-direction: column-reverse;
+        /* Text on top usually better, but visual first is also good. Keeping user's direction or standard stacking */
         text-align: center;
         padding-top: 6rem;
+        justify-content: center;
     }
 
     .hero-text {
         align-items: center;
         display: flex;
         flex-direction: column;
+        margin-top: 2rem;
     }
 
     .hero-name {
@@ -427,6 +446,7 @@
         flex-direction: column;
         height: auto;
         gap: 0.5rem;
+        justify-content: center;
     }
 
     .hero-buttons {
@@ -434,8 +454,47 @@
         flex-wrap: wrap;
     }
 
+    .hero-visual {
+        margin-bottom: 2rem;
+    }
+
     .profile-image {
-        width: 250px;
-        height: 250px;
+        width: 280px;
+        height: 280px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-name {
+        font-size: 2.8rem;
+    }
+
+    .hero-greeting {
+        font-size: 1.2rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+
+    .profile-image {
+        width: 220px;
+        height: 220px;
+    }
+
+    .orb-1,
+    .orb-2 {
+        opacity: 0.3;
+        /* Reduce distraction on small screens */
+        width: 300px;
+        height: 300px;
+    }
+
+    .btn {
+        padding: 0.8rem 2rem;
+        width: 100%;
+        /* Full width buttons on mobile */
+        max-width: 300px;
     }
 }

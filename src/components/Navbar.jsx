@@ -50,7 +50,7 @@ const Navbar = ({ theme, toggleTheme }) => {
     return (
         <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
             <div className="nav-container">
-                <div className="nav-logo" onClick={() => scrollToSection('home')}>PORTFOLIO</div>
+                <div className="nav-logo" onClick={() => scrollToSection('home')}>KAMLESH</div>
 
                 {/* Mobile Toggle */}
                 <button

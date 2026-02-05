@@ -148,5 +148,38 @@
 
 .project-link:hover {
     background: var(--secondary-color);
-    transform: scale(1.1);
+}
+
+/* Responsive Adjustments */
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-section {
+        padding: 4rem 1rem;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+        /* Stack vertically on mobile */
+        max-width: 450px;
+        /* Limit width for better look */
+        margin: 0 auto;
+    }
+
+    .project-card-3d:hover .project-card-content {
+        transform: none;
+        /* Disable heavy 3D lift on mobile */
+    }
+
+    .project-image-wrapper {
+        height: 200px;
+    }
 }

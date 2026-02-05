@@ -148,3 +148,15 @@
     box-shadow: 0 10px 30px rgba(255, 0, 0, 0.5);
     background: #d40000;
 }
+
+@media (max-width: 768px) {
+    .videos-section {
+        padding: 5rem 1rem;
+    }
+
+    .videos-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+}

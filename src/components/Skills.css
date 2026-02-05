@@ -123,3 +123,23 @@
         transform: rotate(360deg);
     }
 }
+
+@media (max-width: 768px) {
+    .skills-section {
+        padding: 5rem 1rem;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .skills-container {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .skill-card {
+        padding: 1.5rem 1rem;
+    }
+}

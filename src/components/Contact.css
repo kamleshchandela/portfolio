@@ -180,3 +180,34 @@
     background: linear-gradient(135deg, var(--secondary-color), #7000ff);
     color: #fff;
 }
+
+@media (max-width: 968px) {
+    .contact-container {
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .contact-info,
+    .contact-form {
+        width: 100%;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-section {
+        padding: 5rem 1rem 3rem;
+    }
+
+    .contact-heading {
+        font-size: 2.5rem;
+    }
+
+    .contact-form {
+        padding: 2rem 1.5rem;
+    }
+
+    .contact-info {
+        padding: 0 1rem;
+    }
+}

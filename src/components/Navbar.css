@@ -123,8 +123,8 @@
     padding: 5px;
 }
 
-/* Mobile Responsive Styles */
-@media (max-width: 768px) {
+/* Tablet & Mobile Responsive Styles */
+@media (max-width: 1024px) {
     .navbar {
         width: 92%;
         top: 15px;

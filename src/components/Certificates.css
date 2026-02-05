@@ -123,3 +123,14 @@
     border-top: 1px solid var(--glass-border);
     padding-top: 1rem;
 }
+
+@media (max-width: 768px) {
+    .certificates-section {
+        padding: 5rem 1rem;
+    }
+
+    .certificates-container {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+}
