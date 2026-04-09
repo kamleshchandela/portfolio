@@ -17,6 +17,7 @@ import SoundToggle from './components/SoundToggle';
 import ChatBot from './components/ChatBot';
 import ThemeRope from './components/ThemeRope';
 import { useSound } from './hooks/useSound';
+import InfinityStones from './components/InfinityStones';
 
 function App() {
   const [theme, setTheme] = useState('dark');
@@ -98,6 +99,7 @@ function App() {
           <ScrollReveal><Contact /></ScrollReveal>
           <Footer />
           <ChatBot /> {/* Added ChatBot component */}
+          <InfinityStones />
         </>
       )}
     </div>

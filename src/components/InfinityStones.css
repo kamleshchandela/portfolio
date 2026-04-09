@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700&display=swap');
+
+/* Main Trigger Button - Now dynamically uses theme colors! */
+.infinity-trigger-btn {
+    position: fixed;
+    bottom: 110px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    /* Update to use the active global theme colors from App.css (or fallback) */
+    background: radial-gradient(circle at 30% 30%, #333, #000);
+    border: 2px solid var(--primary-color, rgba(255, 255, 255, 0.2));
+    box-shadow: 0 0 20px var(--accent-glow, rgba(0,0,0,0.5)), inset 0 0 10px rgba(0,0,0,0.8);
+    cursor: pointer;
+    z-index: 9990;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    /* Extreme attention gripping animations */
+    animation: triggerAttention 2.5s infinite ease-in-out;
+}
+
+@keyframes triggerAttention {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 0 15px var(--accent-glow, rgba(0,0,0,0.5)), inset 0 0 10px rgba(0,0,0,0.8); 
+    }
+    50% { 
+        transform: scale(1.1) translateY(-5px);
+        box-shadow: 0 0 40px var(--primary-color, #ffd700), inset 0 0 20px rgba(255,255,255,0.4); 
+    }
+}
+
+.infinity-trigger-btn:hover {
+    transform: scale(1.2) rotate(15deg) translateY(-8px);
+    box-shadow: 0 0 50px var(--primary-color, #ffd700), inset 0 0 25px var(--accent-glow, rgba(255,215,0,0.4));
+    animation-play-state: paused;
+}
+
+.infinity-trigger-btn.is-stone {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.infinity-trigger-btn.is-stone:hover {
+    transform: scale(1.15) rotate(10deg);
+}
+
+.trigger-stone-image {
+    width: 100%;
+    height: 100%;
+    background-image: var(--stones-img);
+    background-size: 280% 280%;
+    background-position: var(--bg-pos);
+    background-repeat: no-repeat;
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, black 35%, transparent 65%);
+    mask-image: radial-gradient(circle at 50% 50%, black 35%, transparent 65%);
+    border-radius: 50%;
+    filter: drop-shadow(0 0 15px var(--stone-glow));
+    animation: triggerPulseStone 3s infinite alternate;
+}
+
+@keyframes triggerPulseStone {
+    0% { filter: drop-shadow(0 0 10px var(--stone-glow)) brightness(1); }
+    100% { filter: drop-shadow(0 0 25px var(--stone-glow)) brightness(1.4); }
+}
+
+.trigger-icon {
+    width: 35px;
+    height: 35px;
+    /* Uses exact primary and secondary glowing colors dynamically */
+    background: radial-gradient(circle at 30% 30%, var(--primary-color, #ffd700), var(--secondary-color, #b8860b));
+    clip-path: polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%);
+    filter: drop-shadow(0 0 10px var(--primary-color, #ffd700));
+    animation: triggerPulse 2s infinite alternate;
+}
+
+@keyframes triggerPulse {
+    0% { filter: drop-shadow(0 0 5px var(--primary-color, #ffd700)) brightness(1); }
+    100% { filter: drop-shadow(0 0 20px var(--primary-color, #ffd700)) brightness(1.4); }
+}
+
+
+/* Overlay Container */
+.infinity-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000000;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+    overflow: hidden;
+}
+
+.infinity-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Background Stars */
+.overlay-stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(1px 1px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+      radial-gradient(1.5px 1.5px at 40px 70px, #ffffff, rgba(0,0,0,0)),
+      radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0));
+    background-size: 150px 150px;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 1;
+    animation: slowDrift 60s linear infinite;
+}
+
+@keyframes slowDrift {
+    0% { background-position: 0 0; }
+    100% { background-position: -150px -150px; }
+}
+
+/* The Stones Container */
+.stones-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7vw;
+    z-index: 10;
+}
+
+/* Individual Stone Base */
+.infinity-stone {
+    position: relative;
+    width: 80px;
+    height: 110px;
+    cursor: pointer;
+    transition: filter 0.3s ease;
+    transform: translate(var(--start-x), var(--start-y)) scale(0) rotate(var(--start-rot));
+    opacity: 0;
+}
+
+/* Fly IN Animation */
+.infinity-overlay.active .stones-container:not(.has-selection) .infinity-stone {
+    animation: flyIn 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    animation-delay: var(--delay);
+}
+
+@keyframes flyIn {
+    0% {
+        transform: translate(var(--start-x), var(--start-y)) scale(0) rotate(var(--start-rot));
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* High-Realism Stone Body using user provided image */
+.stone-body-image {
+    width: 100%;
+    height: 100%;
+    background-image: var(--stones-img);
+    background-size: 280% 280%;
+    background-position: var(--bg-pos);
+    background-repeat: no-repeat;
+    
+    /* Perfect feathering to isolate the stone smoothly */
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, black 35%, transparent 65%);
+    mask-image: radial-gradient(circle at 50% 50%, black 35%, transparent 65%);
+
+    border-radius: 50%; 
+    animation: floatPulse 3s ease-in-out infinite alternate;
+}
+
+/* Intense Drop Shadow Glow */
+.stone-glow-wrapper {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 25px var(--stone-glow));
+    transition: filter 0.3s ease;
+}
+
+.infinity-stone:hover .stone-glow-wrapper {
+    filter: drop-shadow(0 0 50px var(--stone-glow)) drop-shadow(0 0 30px var(--stone-color)) brightness(1.2);
+}
+
+@keyframes floatPulse {
+    0% { transform: translateY(-8px) scale(0.98); filter: brightness(0.95); }
+    100% { transform: translateY(8px) scale(1.02); filter: brightness(1.2); }
+}
+
+/* 1. SCATTER OTHER STONES */
+.stones-container.has-selection .infinity-stone:not(.selected) {
+    animation: scatterOut 0.8s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+}
+
+@keyframes scatterOut {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+    100% { transform: translate(var(--scatter-x), var(--scatter-y)) scale(0) rotate(180deg); opacity: 0; }
+}
+
+/* 2. FOCUS SELECTED STONE */
+.stones-container.has-selection .infinity-stone.selected {
+    position: absolute;
+    z-index: 100;
+    animation: centerAndExplode 2.5s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+@keyframes centerAndExplode {
+    0% { transform: translate(0, 0) scale(1); }
+    30% { transform: translate(var(--center-dx), var(--center-dy)) scale(2.5); opacity: 1; }
+    50% { transform: translate(var(--center-dx), var(--center-dy)) scale(2.5) rotate(5deg); opacity: 1; filter: brightness(1.5); }
+    70% { transform: translate(var(--center-dx), var(--center-dy)) scale(2.5) rotate(-5deg); filter: brightness(2); }
+    80% { transform: translate(var(--center-dx), var(--center-dy)) scale(0.3); }
+    100% { transform: translate(var(--center-dx), var(--center-dy)) scale(80); opacity: 0; }
+}
+
+/* Cinematic Nebula Explosion Array */
+.explosion-flash {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2vw;
+    height: 2vw;
+    border-radius: 50%;
+    /* Mixing the current stone's glow with a pure white core */
+    background: radial-gradient(circle, #ffffff 0%, var(--active-glow) 30%, var(--active-color) 70%, transparent 100%);
+    box-shadow: 0 0 80vw 40vw var(--active-color);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 90;
+    mix-blend-mode: screen;
+}
+
+/* Deep Nebula texture inside the explosion */
+.cosmic-dust-image {
+    position: absolute;
+    inset: -1000%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    mix-blend-mode: screen;
+    opacity: 1;
+    filter: sepia(1) hue-rotate(calc(var(--active-color) * 1deg)) saturate(800%) brightness(1.5);
+    animation: spinDust 4s cubic-bezier(0.1, 0.8, 0.1, 1);
+}
+
+@keyframes spinDust {
+    from { transform: rotate(0deg) scale(0.1); }
+    to { transform: rotate(180deg) scale(2); }
+}
+
+.explosion-flash.active {
+    animation: massiveExplosion 1.2s cubic-bezier(0.1, 0.8, 0.1, 1) 1.2s forwards; 
+}
+
+@keyframes massiveExplosion {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(1); filter: brightness(3); }
+    30% { opacity: 1; filter: brightness(5); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(150); filter: brightness(1); }
+}
+
+/* Final screen wipe out */
+.theme-fade-overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--active-color);
+    mix-blend-mode: multiply;
+    opacity: 0;
+    z-index: 101;
+    pointer-events: none;
+    transition: opacity 1.2s ease;
+}
+
+.theme-fade-overlay.visible {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .stones-container {
+        flex-wrap: wrap;
+        gap: 4vh 4vw;
+        width: 80%;
+    }
+    .infinity-stone {
+        width: 60px;
+        height: 85px;
+    }
+}
