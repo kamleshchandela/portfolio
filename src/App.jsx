@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
+import Hackathon from './components/Hackathon';
 import Certificates from './components/Certificates';
 import YouTubeVideos from './components/YouTubeVideos';
 import Experience from './components/Experience';
@@ -90,6 +91,7 @@ function App() {
           <Hero />
           <ScrollReveal><Skills /></ScrollReveal>
           <ScrollReveal><Projects /></ScrollReveal>
+          <ScrollReveal><Hackathon /></ScrollReveal>
           <ScrollReveal><Certificates /></ScrollReveal>
           <ScrollReveal><YouTubeVideos /></ScrollReveal>
           <ScrollReveal><Experience /></ScrollReveal>

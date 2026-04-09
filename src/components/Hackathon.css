@@ -1,0 +1,510 @@
+.hackathon-section {
+    padding: 8rem 2rem;
+    position: relative;
+    /* geometric background pattern */
+    background-image: radial-gradient(circle at 50% 50%, var(--pattern-color) 1px, transparent 1px);
+    background-size: 30px 30px;
+}
+
+.hackathon-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+/* Card Styles */
+.hackathon-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    max-width: 450px;
+    width: 100%;
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+.hackathon-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--accent-glow);
+    border-color: var(--primary-color);
+}
+
+.hackathon-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    border: 1px solid var(--glass-border);
+    color: #ffb703;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 2;
+}
+
+.hackathon-image-wrapper {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    position: relative;
+}
+
+.hackathon-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.hackathon-card:hover .hackathon-image {
+    transform: scale(1.05);
+}
+
+.hackathon-hover-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.hackathon-card:hover .hackathon-hover-overlay {
+    opacity: 1;
+}
+
+.hackathon-info {
+    padding: 1.5rem;
+    background: var(--card-bg);
+}
+
+.hackathon-title {
+    color: var(--text-color);
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.hackathon-card:hover .hackathon-title {
+    color: var(--primary-color);
+}
+
+.hackathon-short-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.hackathon-meta {
+    display: flex;
+    gap: 1.5rem;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.hackathon-meta .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.hackathon-meta .highlight {
+    color: var(--primary-color);
+}
+
+/* Modal Styles */
+.hackathon-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.hackathon-modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.hackathon-modal-content {
+    background: var(--bg-color);
+    width: 100%;
+    max-width: 1200px;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    max-height: 85vh;
+    transform: translateY(20px) scale(0.95);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.hackathon-modal-overlay.open .hackathon-modal-content {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px var(--accent-glow);
+}
+
+.close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--glass-border);
+    color: var(--text-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s;
+}
+
+.close-btn:hover {
+    background: var(--text-color);
+    color: var(--bg-color);
+    transform: rotate(90deg);
+}
+
+/* Modal Left: Gallery */
+.hackathon-gallery {
+    flex: 1;
+    position: relative;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50%;
+    overflow: hidden;
+}
+
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 1rem;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0.5;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--glass-border);
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+}
+
+.nav-arrow:hover {
+    background: var(--primary-color);
+    color: #000;
+}
+
+.nav-arrow.left {
+    left: 1rem;
+}
+
+.nav-arrow.right {
+    right: 1rem;
+}
+
+.gallery-dots {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.dot.active {
+    background: var(--primary-color);
+    box-shadow: 0 0 6px var(--primary-color);
+    transform: scale(1.2);
+}
+
+/* Modal Right: Details */
+.hackathon-details {
+    flex: 1.2;
+    padding: 2.5rem;
+    overflow-y: auto;
+    background: var(--card-bg);
+    display: flex;
+    flex-direction: column;
+}
+
+.hackathon-details::-webkit-scrollbar {
+    width: 6px;
+}
+
+.hackathon-details::-webkit-scrollbar-thumb {
+    background: var(--glass-border);
+    border-radius: 4px;
+}
+
+.hackathon-details::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+.modal-title {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    margin-bottom: 0.3rem;
+    line-height: 1.2;
+}
+
+.modal-role {
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    font-family: var(--font-main);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.modal-desc {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.detail-section {
+    margin-bottom: 0.8rem;
+}
+
+.detail-title {
+    font-size: 0.95rem;
+    color: var(--text-color);
+    margin-bottom: 0.4rem;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 0.2rem;
+    font-family: var(--font-main);
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.tech-pill {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 0.2rem 0.6rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    color: var(--primary-color);
+    transition: all 0.3s;
+}
+
+.tech-pill:hover {
+    background: var(--primary-color);
+    color: #000;
+}
+
+.achievement-highlight {
+    color: #ffb703;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 183, 3, 0.1);
+    padding: 0.6rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 183, 3, 0.3);
+    font-size: 0.85rem;
+}
+
+[data-theme="light"] .achievement-highlight {
+    color: #b38000;
+    /* Darker for light mode contrast */
+    background: rgba(255, 183, 3, 0.15);
+    border-color: rgba(255, 183, 3, 0.4);
+}
+
+.links-group {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.hackathon-link-btn {
+    flex: 1;
+    min-width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    font-size: 0.85rem;
+}
+
+.btn-github {
+    background: var(--glass-bg);
+    color: var(--text-color);
+    border: 1px solid var(--glass-border);
+}
+
+.btn-github:hover {
+    background: var(--text-color);
+    border-color: var(--text-color);
+    color: var(--bg-color);
+    transform: scale(1.05);
+}
+
+.btn-live {
+    background: var(--primary-color);
+    color: var(--bg-color);
+    box-shadow: 0 4px 15px var(--accent-glow);
+}
+
+.btn-live:hover {
+    box-shadow: 0 6px 20px var(--accent-glow);
+    transform: scale(1.05);
+}
+
+.btn-youtube {
+    background: rgba(255, 0, 0, 0.05);
+    color: #ff4444;
+    border: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+.btn-youtube:hover {
+    background: rgba(255, 0, 0, 0.15);
+    color: #ff4444;
+    transform: scale(1.05);
+    border-color: rgba(255, 0, 0, 0.4);
+}
+
+/* Responsive Modal */
+@media (max-width: 900px) {
+    .hackathon-modal-overlay {
+        padding: 1rem;
+    }
+
+    .hackathon-modal-content {
+        flex-direction: column;
+        max-height: 95vh;
+        overflow-y: auto;
+        /* Base modal is scrollable */
+    }
+
+    .hackathon-gallery {
+        height: 350px;
+        min-height: 350px;
+        flex: none;
+    }
+
+    .hackathon-details {
+        overflow-y: visible;
+        /* Let inner content spill naturally */
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .hackathon-modal-overlay {
+        padding: 0.5rem;
+    }
+
+    .hackathon-details {
+        padding: 1.5rem;
+    }
+
+    .links-group {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .hackathon-link-btn {
+        width: 100%;
+        padding: 0.8rem;
+    }
+
+    .hackathon-gallery {
+        height: 250px;
+        min-height: 250px;
+    }
+
+    .modal-title {
+        font-size: 1.3rem;
+    }
+
+    .tech-stack {
+        gap: 0.4rem;
+    }
+
+    .tech-pill {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.6rem;
+    }
+}

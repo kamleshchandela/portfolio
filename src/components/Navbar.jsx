@@ -25,11 +25,17 @@ const Navbar = ({ theme, toggleTheme }) => {
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        setActiveSection(entry.target.id);
+                        const id = entry.target.id;
+                        const validLinks = ['home', 'skills', 'projects', 'hackathon', 'certificates', 'videos', 'experience', 'contact'];
+                        if (validLinks.includes(id)) {
+                            setActiveSection(id);
+                        }
                     }
                 });
             },
-            { threshold: 0.5 }
+            // Using rootMargin to effectively draw a line across the middle of the viewport
+            // Any section crossing this area becomes active. Solves the issue with very tall sections.
+            { rootMargin: "-30% 0px -50% 0px", threshold: 0 }
         );
 
         const sections = document.querySelectorAll('section');
@@ -63,7 +69,7 @@ const Navbar = ({ theme, toggleTheme }) => {
 
                 {/* Nav Links (Desktop + Mobile) */}
                 <div className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
-                    {['home', 'projects', 'certificates', 'videos', 'experience', 'contact'].map((item) => (
+                    {['home', 'skills', 'projects', 'hackathon', 'certificates', 'videos', 'experience', 'contact'].map((item) => (
                         <button
                             key={item}
                             onClick={() => scrollToSection(item)}
