@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 import { Sun, Moon, Menu, X } from 'lucide-react';
@@ -7,6 +8,8 @@ const Navbar = ({ theme, toggleTheme }) => {
     const [scrolled, setScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -33,8 +36,6 @@ const Navbar = ({ theme, toggleTheme }) => {
                     }
                 });
             },
-            // Using rootMargin to effectively draw a line across the middle of the viewport
-            // Any section crossing this area becomes active. Solves the issue with very tall sections.
             { rootMargin: "-30% 0px -50% 0px", threshold: 0 }
         );
 
@@ -44,19 +45,16 @@ const Navbar = ({ theme, toggleTheme }) => {
         return () => sections.forEach((section) => observer.unobserve(section));
     }, []);
 
-    const scrollToSection = (sectionId) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-            setActiveSection(sectionId);
-            setMobileMenuOpen(false); // Close mobile menu on click
-        }
+    const handleNavigation = (sectionId) => {
+        const path = sectionId === 'home' ? '/' : `/${sectionId}`;
+        navigate(path);
+        setMobileMenuOpen(false);
     };
 
     return (
         <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
             <div className="nav-container">
-                <div className="nav-logo" onClick={() => scrollToSection('home')}>KAMLESH</div>
+                <div className="nav-logo" onClick={() => handleNavigation('home')}>KAMLESH</div>
 
                 {/* Mobile Toggle */}
                 <button
@@ -72,7 +70,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                     {['home', 'skills', 'projects', 'hackathon', 'certificates', 'videos', 'experience', 'contact'].map((item) => (
                         <button
                             key={item}
-                            onClick={() => scrollToSection(item)}
+                            onClick={() => handleNavigation(item)}
                             className={`nav-link ${activeSection === item ? 'active' : ''}`}
                         >
                             {item.charAt(0).toUpperCase() + item.slice(1)}

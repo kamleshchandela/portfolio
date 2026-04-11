@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Skills from './components/Skills';
@@ -22,6 +23,7 @@ import InfinityStones from './components/InfinityStones';
 function App() {
   const [theme, setTheme] = useState('dark');
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
   const { muted, setMuted, playHover, playClick, playOn, playOff } = useSound(theme);
 
 
@@ -80,6 +82,19 @@ function App() {
     setLoading(false);
     // Optional: playOn() here if you want sound on load completion, but might need user interaction firstT
   };
+
+  useEffect(() => {
+    if (!loading) {
+      const sectionId = location.pathname === '/' ? 'home' : location.pathname.substring(1);
+      const element = document.getElementById(sectionId);
+      if (element) {
+        // Slightly delay smooth scroll to let DOM layout settle
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location.pathname, loading]);
 
   return (
     <div className="app">

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Hero.css';
 
 const Hero = () => {
@@ -6,6 +7,7 @@ const Hero = () => {
     const [currentRole, setCurrentRole] = useState(0);
     const [displayText, setDisplayText] = useState('');
     const [isDeleting, setIsDeleting] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const typeSpeed = isDeleting ? 100 : 200;
@@ -61,7 +63,7 @@ const Hero = () => {
                         Let's explore the endless possibilities of the web together.
                     </p>
                     <div className="hero-buttons fade-in-up delay-3">
-                        <button className="btn btn-primary" onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}>View Work</button>
+                        <button className="btn btn-primary" onClick={() => navigate('/projects')}>View Work</button>
                         <button className="btn btn-resume" onClick={() => window.open('/resume.pdf', '_blank')}>
                             Resume
                             <span className="download-sub-btn" onClick={(e) => {
@@ -77,7 +79,7 @@ const Hero = () => {
                                 </svg>
                             </span>
                         </button>
-                        <button className="btn btn-secondary" onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}>Contact Me</button>
+                        <button className="btn btn-secondary" onClick={() => navigate('/contact')}>Contact Me</button>
                     </div>
                 </div>
                 <div className="hero-visual fade-in-right">
