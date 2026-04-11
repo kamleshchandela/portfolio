@@ -1,5 +1,7 @@
 import React from 'react';
+import { Helmet } from "react-helmet"
 import { Award, ExternalLink, Calendar } from 'lucide-react';
+
 import './Certificates.css';
 
 const Certificates = () => {
@@ -40,6 +42,11 @@ const Certificates = () => {
 
     return (
         <section id="certificates" className="certificates-section">
+            <Helmet>
+                <title>
+                    OKOKOOKOKOOK
+                </title>
+            </Helmet>
             <h2 className="section-title">My <span className="highlight">Certifications</span></h2>
             <div className="certificates-container">
                 {certificates.map((cert) => (
