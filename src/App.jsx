@@ -110,9 +110,8 @@ function App() {
   const location = useLocation();
   const { muted, setMuted, playHover, playClick, playOn, playOff } = useSound(theme);
 
-  // Get the current route's SEO config, fallback to home
-  const currentSEO = routeSEO[location.pathname] || routeSEO['/'];
-
+  // Get the current route's SEO config — double fallback ensures title is ALWAYS defined
+  const currentSEO = routeSEO[location.pathname] ?? routeSEO['/'];
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
