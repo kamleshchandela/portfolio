@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github, Youtube } from 'lucide-react';
 import './Projects.css';
 
 const ProjectCard = ({ project }) => {
@@ -37,6 +37,11 @@ const ProjectCard = ({ project }) => {
                                 <ExternalLink size={24} />
                             </a>
                         )}
+                        {project.youtubeLink && (
+                            <a href={project.youtubeLink} target="_blank" rel="noopener noreferrer" className="project-link" aria-label="YouTube Demo">
+                                <Youtube size={24} />
+                            </a>
+                        )}
                     </div>
                 </div>
                 <div className="project-info">
@@ -60,13 +65,24 @@ const Projects = () => {
 
     const projects = [
         {
+            id: 0,
+            title: "Resumatch AI",
+            description: "AI resume match and optimization tool",
+            image: "https://raw.githubusercontent.com/kamleshchandela/resumatch-ai/refs/heads/main/screenshot_home.png",
+            tags: ["React", "Tailwind", "Python"],
+            githubLink: "https://github.com/kamleshchandela/resumatch-ai",
+            demoLink: `https://resumatch-kamleshchandela.netlify.app/`,
+            youtubeLink: "https://youtu.be/nenEcstK8Bc?si=OT0Dm3PPX7kjzAe-"
+        },
+        {
             id: 1,
             title: "Taj Hotel Clone",
             description: "A clone of the Taj Hotel website demonstrating layout and design skills.",
             image: "https://res.cloudinary.com/dsuhb6swy/image/upload/v1770033585/Screenshot_2026-02-02_172821_edyfke.png",
             tags: ["HTML", "CSS", "JS"],
             githubLink: "https://github.com/kamleshchandela/assignment/tree/main/diwali/tajhotel",
-            demoLink: `${BASE_URL}/diwali/tajhotel/index.html`
+            demoLink: `${BASE_URL}/diwali/tajhotel/index.html`,
+            youtubeLink: "https://youtu.be/095_gUdXub4?si=7gNAEEvpEmD26v79"
         },
         {
             id: 2,
@@ -75,7 +91,8 @@ const Projects = () => {
             image: "https://res.cloudinary.com/dsuhb6swy/image/upload/v1770034507/Screenshot_2026-02-02_173352_flfezn.png",
             tags: ["HTML", "CSS", "JS"],
             githubLink: "https://github.com/kamleshchandela/assignment/tree/main/diwali/car24",
-            demoLink: `${BASE_URL}/diwali/car24/index.html`
+            demoLink: `${BASE_URL}/diwali/car24/index.html`,
+            youtubeLink: "https://youtu.be/UX3TIi4kPSM?si=VNQvKk78p-RkDlzk"
         },
         {
             id: 3,
@@ -84,7 +101,8 @@ const Projects = () => {
             image: "https://res.cloudinary.com/dsuhb6swy/image/upload/v1770034506/Screenshot_2026-02-02_173638_w1cpvt.png",
             tags: ["HTML", "CSS", "JS"],
             githubLink: "https://github.com/kamleshchandela/assignment/tree/main/diwali/nansen",
-            demoLink: `${BASE_URL}/diwali/nansen/index.html`
+            demoLink: `${BASE_URL}/diwali/nansen/index.html`,
+            youtubeLink: "https://youtu.be/pOrdhiqmkGE?si=_dFNIFO66G32RlTl"
         },
         {
             id: 4,
@@ -93,7 +111,8 @@ const Projects = () => {
             image: "https://res.cloudinary.com/dsuhb6swy/image/upload/v1770034506/Screenshot_2026-02-02_173653_ftvlch.png",
             tags: ["HTML", "CSS", "JS"],
             githubLink: "https://github.com/kamleshchandela/assignment/tree/main/diwali/xrp",
-            demoLink: `${BASE_URL}/diwali/xrp/index.html`
+            demoLink: `${BASE_URL}/diwali/xrp/index.html`,
+            youtubeLink: "https://youtu.be/LC0uDJnw28c?si=j_gXmTL9dXBRDt22"
         },
         {
             id: 5,
@@ -102,7 +121,8 @@ const Projects = () => {
             image: "https://res.cloudinary.com/dsuhb6swy/image/upload/v1770034507/Screenshot_2026-02-02_173720_bj5syf.png",
             tags: ["HTML", "CSS", "JS"],
             githubLink: "https://github.com/kamleshchandela/assignment/tree/main/diwali/peakdesign",
-            demoLink: `${BASE_URL}/diwali/peakdesign/index.html`
+            demoLink: `${BASE_URL}/diwali/peakdesign/index.html`,
+            youtubeLink: "https://youtu.be/gp0t99w0QnI?si=kYSm28iQGBxoeItQ"
         },
         {
             id: 6,
@@ -111,7 +131,8 @@ const Projects = () => {
             image: "https://res.cloudinary.com/dsuhb6swy/image/upload/v1770034508/Screenshot_2026-02-02_173838_tkqzae.png",
             tags: ["HTML", "CSS", "JS"],
             githubLink: "https://github.com/kamleshchandela/assignment/tree/main/diwali/harvey",
-            demoLink: `${BASE_URL}/diwali/harvey/index.html`
+            demoLink: `${BASE_URL}/diwali/harvey/index.html`,
+            youtubeLink: "https://youtu.be/Buf5pGmTkzE?si=FhAyw6B-XQzx4owH"
         },
         {
             id: 7,
@@ -120,7 +141,8 @@ const Projects = () => {
             image: "https://res.cloudinary.com/dsuhb6swy/image/upload/v1770034512/Screenshot_2026-02-02_174103_relchv.png",
             tags: ["HTML", "CSS", "JS", "Game"],
             githubLink: "https://github.com/kamleshchandela/assignment/tree/main/game/tictectoe",
-            demoLink: `${BASE_URL}/game/tictectoe/index.html`
+            demoLink: `${BASE_URL}/game/tictectoe/index.html`,
+            youtubeLink: "https://youtube.com"
         },
         {
             id: 9,
@@ -129,7 +151,8 @@ const Projects = () => {
             image: "https://res.cloudinary.com/dsuhb6swy/image/upload/v1770034508/Screenshot_2026-02-02_174140_egj2yx.png",
             tags: ["API", "Async/Await", "JS"],
             githubLink: "https://github.com/kamleshchandela/assignment/tree/main/api/task2",
-            demoLink: `${BASE_URL}/api/task2/index.html`
+            demoLink: `${BASE_URL}/api/task2/index.html`,
+            youtubeLink: "https://youtube.com"
         },
         {
             id: 10,
@@ -138,7 +161,8 @@ const Projects = () => {
             image: "https://res.cloudinary.com/dsuhb6swy/image/upload/v1770034507/Screenshot_2026-02-02_174226_cvcfzh.png",
             tags: ["API", "Weather", "JS"],
             githubLink: "https://github.com/kamleshchandela/assignment/tree/main/api/task2",
-            demoLink: `${BASE_URL}/api/task1/index.html`
+            demoLink: `${BASE_URL}/api/task1/index.html`,
+            youtubeLink: "https://youtube.com"
         },
         {
             id: 11,
@@ -147,7 +171,8 @@ const Projects = () => {
             image: "https://res.cloudinary.com/dsuhb6swy/image/upload/v1770034508/Screenshot_2026-02-02_174335_cqbpfn.png", // Robot Face/Humanoid
             tags: ["AI", "Interface", "Future"],
             githubLink: "https://github.com/kamleshchandela/assignment/tree/main/api/task2",
-            demoLink: `${BASE_URL}/api/task6/index.html`
+            demoLink: `${BASE_URL}/api/task6/index.html`,
+            youtubeLink: "https://youtube.com"
         }
     ];
 
