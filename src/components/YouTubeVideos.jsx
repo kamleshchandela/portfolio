@@ -1,32 +1,35 @@
 import React from 'react';
 import { Play, Youtube } from 'lucide-react';
 import './YouTubeVideos.css';
+import img1 from "../images/youtube/yt1.png"
+import img2 from "../images/youtube/yt2.png"
+import img3 from "../images/youtube/yt3.png"
 
 const YouTubeVideos = () => {
     const videos = [
         {
             id: 1,
-            title: "Building a Modern Portfolio",
-            thumbnail: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=340&fit=crop",
-            link: "#",
+            title: "AI resume match and optimization tool",
+            thumbnail: img1,
+            link: "https://youtu.be/nenEcstK8Bc?si=OT0Dm3PPX7kjzAe-",
             views: "1.2K views",
-            duration: "15:20"
+            duration: "07:21"
         },
         {
             id: 2,
-            title: "React Hooks Explained",
-            thumbnail: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=340&fit=crop",
-            link: "#",
+            title: "E-commerce layout based on Peak Design's website.",
+            thumbnail: img2,
+            link: "https://youtu.be/gp0t99w0QnI?si=aBEnoqj-uByZ-Kjp",
             views: "3.5K views",
-            duration: "10:45"
+            duration: "04:46"
         },
         {
             id: 3,
             title: "CSS Animations Masterclass",
-            thumbnail: "https://images.unsplash.com/photo-1523437113738-bbd3cc89fb19?w=600&h=340&fit=crop",
-            link: "#",
+            thumbnail: img3,
+            link: "https://youtu.be/Buf5pGmTkzE?si=aAMNVCqEV5wA2xOr",
             views: "890 views",
-            duration: "22:15"
+            duration: "04:28"
         }
     ];
 
@@ -58,7 +61,7 @@ const YouTubeVideos = () => {
                 ))}
             </div>
             <div className="videos-cta">
-                <a href="#" className="youtube-btn">
+                <a href="https://www.youtube.com/@KamleshChandela-z5e" className="youtube-btn">
                     <Youtube size={24} />
                     <span>Visit Channel</span>
                 </a>
