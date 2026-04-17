@@ -1,16 +1,12 @@
 import React from 'react';
 import { Play, Youtube } from 'lucide-react';
 import './YouTubeVideos.css';
-import img1 from "../images/youtube/yt1.png"
-import img2 from "../images/youtube/yt2.png"
-import img3 from "../images/youtube/yt3.png"
-
 const YouTubeVideos = () => {
     const videos = [
         {
             id: 1,
             title: "AI resume match and optimization tool",
-            thumbnail: img1,
+            thumbnail: "https://res.cloudinary.com/dhzhzxczn/image/upload/q_auto/f_auto/v1776431326/yt1_mc6jwp.png",
             link: "https://youtu.be/nenEcstK8Bc?si=OT0Dm3PPX7kjzAe-",
             views: "1.2K views",
             duration: "07:21"
@@ -18,7 +14,7 @@ const YouTubeVideos = () => {
         {
             id: 2,
             title: "E-commerce layout based on Peak Design's website.",
-            thumbnail: img2,
+            thumbnail: "https://res.cloudinary.com/dhzhzxczn/image/upload/q_auto/f_auto/v1776431321/yt2_ra6x0f.png",
             link: "https://youtu.be/gp0t99w0QnI?si=aBEnoqj-uByZ-Kjp",
             views: "3.5K views",
             duration: "04:46"
@@ -26,7 +22,7 @@ const YouTubeVideos = () => {
         {
             id: 3,
             title: "CSS Animations Masterclass",
-            thumbnail: img3,
+            thumbnail: "https://res.cloudinary.com/dhzhzxczn/image/upload/q_auto/f_auto/v1776431322/yt3_lykonj.png",
             link: "https://youtu.be/Buf5pGmTkzE?si=aAMNVCqEV5wA2xOr",
             views: "890 views",
             duration: "04:28"
