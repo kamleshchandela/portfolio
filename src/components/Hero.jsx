@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import './Hero.css';
 
 const Hero = () => {
@@ -30,7 +31,7 @@ const Hero = () => {
 
         const timer = setTimeout(type, typeSpeed);
         return () => clearTimeout(timer);
-    }, [displayText, isDeleting, currentRole, roles]);
+    }, [displayText, isDeleting, currentRole]);
 
     const handleMouseMove = (e) => {
         const orbs = document.querySelectorAll('.orb');
@@ -52,37 +53,65 @@ const Hero = () => {
             </div>
 
             <div className="hero-content">
-                <div className="hero-text">
-                    <h2 className="hero-greeting fade-in-up">Hello, I'm</h2>
-                    <h1 className="hero-name glitch" data-text="Kamlesh">Kamlesh</h1>
-                    <h3 className="hero-role fade-in-up delay-1">
+                <motion.div 
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="hero-text"
+                >
+                    <motion.h2 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        className="hero-greeting"
+                    >
+                        Hello, I'm
+                    </motion.h2>
+                    <motion.h1 
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.7, delay: 0.3 }}
+                        className="hero-name glitch" 
+                        data-text="Kamlesh"
+                    >
+                        Kamlesh
+                    </motion.h1>
+                    <motion.h3 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5, delay: 0.5 }}
+                        className="hero-role"
+                    >
                         I am a <span className="highlight typing-text">{displayText}</span><span className="cursor">|</span>
-                    </h3>
-                    <p className="hero-description fade-in-up delay-2">
+                    </motion.h3>
+                    <motion.p 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.7 }}
+                        className="hero-description"
+                    >
                         Crafting immersive digital experiences with modern web technologies.
                         Let's explore the endless possibilities of the web together.
-                    </p>
-                    <div className="hero-buttons fade-in-up delay-3">
+                    </motion.p>
+                    <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.9 }}
+                        className="hero-buttons"
+                    >
                         <button className="btn btn-primary" onClick={() => navigate('/projects')}>View Work</button>
                         <button className="btn btn-resume" onClick={() => window.open('/resume.pdf', '_blank')}>
                             Resume
-                            <span className="download-sub-btn" onClick={(e) => {
-                                e.stopPropagation();
-                                const link = document.createElement('a');
-                                link.href = '/resume.pdf';
-                                link.download = 'Kamlesh_Chandela_Resume.pdf';
-                                link.click();
-                            }} title="Download Resume">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
-                                    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
-                                </svg>
-                            </span>
                         </button>
                         <button className="btn btn-secondary" onClick={() => navigate('/contact')}>Contact Me</button>
-                    </div>
-                </div>
-                <div className="hero-visual fade-in-right">
+                    </motion.div>
+                </motion.div>
+                <motion.div 
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 1, delay: 0.4, type: "spring", stiffness: 50 }}
+                    className="hero-visual"
+                >
                     <div className="card-glass profile-card">
                         <div className="profile-image-container">
                             <img
@@ -92,7 +121,7 @@ const Hero = () => {
                             />
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </section>
     );

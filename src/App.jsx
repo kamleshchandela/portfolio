@@ -10,6 +10,8 @@ import YouTubeVideos from './components/YouTubeVideos';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import FigmaDesigns from './components/FigmaDesigns';
+import ResumeViewer from './components/ResumeViewer';
 import './App.css';
 
 import LoadingScreen from './components/LoadingScreen';
@@ -193,7 +195,7 @@ function App() {
         routePath={location.pathname}
       />
       {loading && <LoadingScreen onComplete={handleLoadingComplete} />}
-      {!loading && (
+{!loading && (
         <>
           <ThemeRope theme={theme} toggleTheme={toggleTheme} />
           <SoundToggle muted={muted} toggleMute={toggleMute} />
@@ -201,13 +203,15 @@ function App() {
           <Hero />
           <ScrollReveal><Skills /></ScrollReveal>
           <ScrollReveal><Projects /></ScrollReveal>
+          <ScrollReveal><FigmaDesigns /></ScrollReveal>
           <ScrollReveal><Hackathon /></ScrollReveal>
           <ScrollReveal><Certificates /></ScrollReveal>
           <ScrollReveal><YouTubeVideos /></ScrollReveal>
           <ScrollReveal><Experience /></ScrollReveal>
+          <ScrollReveal><ResumeViewer /></ScrollReveal>
           <ScrollReveal><Contact /></ScrollReveal>
           <Footer />
-          <ChatBot /> {/* Added ChatBot component */}
+          <ChatBot />
           <InfinityStones />
         </>
       )}

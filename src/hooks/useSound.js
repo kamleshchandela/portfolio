@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, useEffect } from 'react';
+import { useState, useCallback, useRef } from 'react';
 
 export const useSound = (theme = 'dark') => {
     const [muted, setMuted] = useState(true);

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import './Navbar.css';
 
 import { Sun, Moon, Menu, X } from 'lucide-react';
@@ -9,7 +10,6 @@ const Navbar = ({ theme, toggleTheme }) => {
     const [activeSection, setActiveSection] = useState('home');
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const navigate = useNavigate();
-    const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -29,7 +29,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         const id = entry.target.id;
-                        const validLinks = ['home', 'skills', 'projects', 'hackathon', 'certificates', 'videos', 'experience', 'contact'];
+                        const validLinks = ['home', 'skills', 'projects', 'figma-designs', 'hackathon', 'certificates', 'videos', 'experience', 'resume', 'contact'];
                         if (validLinks.includes(id)) {
                             setActiveSection(id);
                         }
@@ -54,7 +54,7 @@ const Navbar = ({ theme, toggleTheme }) => {
     return (
         <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
             <div className="nav-container">
-                <div className="nav-logo" onClick={() => handleNavigation('home')}>KAMLESH</div>
+                <div className="nav-logo" onClick={() => handleNavigation('home')}>KC</div>
 
                 {/* Mobile Toggle */}
                 <button
@@ -67,13 +67,19 @@ const Navbar = ({ theme, toggleTheme }) => {
 
                 {/* Nav Links (Desktop + Mobile) */}
                 <div className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
-                    {['home', 'skills', 'projects', 'hackathon', 'certificates', 'videos', 'experience', 'contact'].map((item) => (
+                    {['home', 'skills', 'projects', 'figma-designs', 'hackathon', 'certificates', 'videos', 'experience', 'resume', 'contact'].map((item) => (
                         <button
                             key={item}
                             onClick={() => handleNavigation(item)}
                             className={`nav-link ${activeSection === item ? 'active' : ''}`}
                         >
                             {item.charAt(0).toUpperCase() + item.slice(1)}
+                            {activeSection === item && (
+                                <motion.div
+                                    layoutId="navbar-indicator"
+                                    className="navbar-active-indicator"
+                                />
+                            )}
                         </button>
                     ))}
                     <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle Theme">

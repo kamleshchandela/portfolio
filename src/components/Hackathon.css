@@ -1,9 +1,28 @@
 .hackathon-section {
     padding: 8rem 2rem;
     position: relative;
-    /* geometric background pattern */
-    background-image: radial-gradient(circle at 50% 50%, var(--pattern-color) 1px, transparent 1px);
-    background-size: 30px 30px;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Background glows */
+.hackathon-section::before {
+    content: '';
+    position: absolute;
+    width: 60vw;
+    height: 60vw;
+    border-radius: 50%;
+    filter: blur(150px);
+    z-index: -1;
+    opacity: 0.15;
+    background: var(--secondary-color);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: driftSlow 20s ease-in-out infinite alternate;
 }
 
 .hackathon-container {
@@ -11,75 +30,91 @@
     margin: 0 auto;
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
-/* Card Styles */
 .hackathon-card {
-    background: var(--glass-bg);
+    background: rgba(15, 15, 20, 0.4);
     border: 1px solid var(--glass-border);
-    border-radius: 20px;
+    border-radius: 24px;
     overflow: hidden;
     cursor: pointer;
-    transition: all 0.3s ease;
-    max-width: 450px;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    max-width: 900px;
     width: 100%;
-    position: relative;
-    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: row;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+[data-theme="light"] .hackathon-card {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 768px) {
+    .hackathon-card {
+        flex-direction: column;
+    }
 }
 
 .hackathon-card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--accent-glow);
-    border-color: var(--primary-color);
-}
-
-.hackathon-badge {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(5px);
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-    border: 1px solid var(--glass-border);
-    color: #ffb703;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    z-index: 2;
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(0, 229, 255, 0.15);
+    border-color: rgba(0, 229, 255, 0.3);
 }
 
 .hackathon-image-wrapper {
-    width: 100%;
-    height: 240px;
-    overflow: hidden;
+    flex: 1;
     position: relative;
+    overflow: hidden;
+    min-height: 300px;
 }
 
 .hackathon-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .hackathon-card:hover .hackathon-image {
     transform: scale(1.05);
 }
 
+.hackathon-badge {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    background: rgba(15, 15, 20, 0.8);
+    backdrop-filter: blur(8px);
+    padding: 0.6rem 1.2rem;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    color: #ffd700;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 2;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
 .hackathon-hover-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 1rem;
     color: white;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: all 0.4s ease;
 }
 
 .hackathon-card:hover .hackathon-hover-overlay {
@@ -87,39 +122,42 @@
 }
 
 .hackathon-info {
-    padding: 1.5rem;
-    background: var(--card-bg);
+    flex: 1.2;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .hackathon-title {
     color: var(--text-color);
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-    font-weight: 700;
-}
-
-.hackathon-card:hover .hackathon-title {
-    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
 }
 
 .hackathon-short-desc {
     color: var(--text-secondary);
-    font-size: 0.95rem;
-    margin-bottom: 1rem;
-    line-height: 1.5;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
 }
 
 .hackathon-meta {
     display: flex;
-    gap: 1.5rem;
+    flex-wrap: wrap;
+    gap: 2rem;
     color: var(--text-secondary);
-    font-size: 0.85rem;
+    font-size: 0.95rem;
+    font-weight: 500;
 }
 
 .hackathon-meta .meta-item {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.5rem;
 }
 
 .hackathon-meta .highlight {
@@ -133,8 +171,9 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(8px);
+    background: rgba(4, 4, 10, 0.85); /* Deep cinematic tint */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     z-index: 99999;
     display: flex;
     justify-content: center;
@@ -142,7 +181,7 @@
     padding: 2rem;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s ease;
 }
 
 .hackathon-modal-overlay.open {
@@ -151,110 +190,126 @@
 }
 
 .hackathon-modal-content {
-    background: var(--bg-color);
+    background: rgba(20, 20, 25, 0.6);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     width: 100%;
     max-width: 1200px;
-    border-radius: 20px;
-    border: 1px solid var(--glass-border);
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     flex-direction: row;
     position: relative;
     max-height: 85vh;
-    transform: translateY(20px) scale(0.95);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(30px) scale(0.92);
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
     overflow: hidden;
+}
+
+[data-theme="light"] .hackathon-modal-content {
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.1), 0 0 30px rgba(0, 229, 255, 0.05);
 }
 
 .hackathon-modal-overlay.open .hackathon-modal-content {
     transform: translateY(0) scale(1);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px var(--accent-glow);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), 0 0 50px rgba(0, 229, 255, 0.15);
 }
 
 .close-btn {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: var(--glass-bg);
-    backdrop-filter: blur(5px);
-    border: 1px solid var(--glass-border);
-    color: var(--text-color);
-    width: 40px;
-    height: 40px;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    z-index: 10;
+    z-index: 20;
     transition: all 0.3s;
 }
 
+[data-theme="light"] .close-btn {
+    background: rgba(0, 0, 0, 0.08);
+    color: #222;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
 .close-btn:hover {
-    background: var(--text-color);
-    color: var(--bg-color);
+    background: #ff4444;
+    color: white;
     transform: rotate(90deg);
+    border-color: #ff4444;
+}
+
+[data-theme="light"] .close-btn:hover {
+    background: #ff4444;
+    color: white;
+    border-color: #ff4444;
 }
 
 /* Modal Left: Gallery */
 .hackathon-gallery {
-    flex: 1;
+    flex: 0.9;
     position: relative;
-    background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+    background: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 50%;
+    min-width: 40%;
     overflow: hidden;
+    padding: 1.5rem;
+    padding-right: 0.5rem;
 }
 
 .gallery-img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    padding: 1rem;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     animation: fadeIn 0.5s;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0.5;
-    }
-
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0.5; }
+    to { opacity: 1; }
 }
 
 .nav-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
-    border: 1px solid var(--glass-border);
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     color: white;
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all 0.3s;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 .nav-arrow:hover {
     background: var(--primary-color);
-    color: #000;
+    color: #fff;
+    transform: translateY(-50%) scale(1.1);
+    border-color: var(--primary-color);
 }
 
-.nav-arrow.left {
-    left: 1rem;
-}
-
-.nav-arrow.right {
-    right: 1rem;
-}
+.nav-arrow.left { left: 2.5rem; }
+.nav-arrow.right { right: 1.5rem; }
 
 .gallery-dots {
     position: absolute;
@@ -286,50 +341,45 @@
 
 /* Modal Right: Details */
 .hackathon-details {
-    flex: 1.2;
-    padding: 2.5rem;
-    overflow-y: auto;
-    background: var(--card-bg);
+    flex: 1.3;
+    padding: 2.5rem 2rem;
+    overflow-y: hidden;
+    background: transparent;
     display: flex;
     flex-direction: column;
 }
 
-.hackathon-details::-webkit-scrollbar {
-    width: 6px;
-}
-
-.hackathon-details::-webkit-scrollbar-thumb {
-    background: var(--glass-border);
-    border-radius: 4px;
-}
-
-.hackathon-details::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-color);
-}
-
 .modal-title {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     color: var(--primary-color);
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
     line-height: 1.2;
 }
 
 .modal-role {
     color: var(--secondary-color);
     font-weight: 600;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.6rem;
     font-family: var(--font-main);
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 
 .modal-desc {
-    color: var(--text-secondary);
+    color: var(--text-color);
+    opacity: 0.9;
     line-height: 1.6;
-    margin-bottom: 1.5rem;
-    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+[data-theme="light"] .modal-desc {
+    color: #222;
+    opacity: 1;
+    font-weight: 500;
 }
 
 .detail-section {
@@ -367,29 +417,31 @@
 }
 
 .achievement-highlight {
-    color: #ffb703;
+    color: #ffd700;
     font-weight: 600;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    background: rgba(255, 183, 3, 0.1);
-    padding: 0.6rem;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 183, 3, 0.3);
-    font-size: 0.85rem;
+    gap: 0.6rem;
+    background: rgba(255, 215, 0, 0.1);
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
+    box-shadow: inset 0 0 10px rgba(255, 215, 0, 0.05);
 }
 
 [data-theme="light"] .achievement-highlight {
+    background: linear-gradient(135deg, #fff9e6, #fff4cc);
     color: #b38000;
-    /* Darker for light mode contrast */
-    background: rgba(255, 183, 3, 0.15);
-    border-color: rgba(255, 183, 3, 0.4);
+    border-color: rgba(255, 215, 0, 0.4);
+    box-shadow: 0 4px 10px rgba(255, 215, 0, 0.15);
 }
 
 .links-group {
     display: flex;
     gap: 0.8rem;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     flex-wrap: wrap;
 }
 
@@ -409,100 +461,94 @@
 }
 
 .btn-github {
-    background: var(--glass-bg);
+    background: rgba(255, 255, 255, 0.05);
     color: var(--text-color);
-    border: 1px solid var(--glass-border);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+[data-theme="light"] .btn-github {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
 }
 
 .btn-github:hover {
     background: var(--text-color);
-    border-color: var(--text-color);
+    border-color: transparent;
     color: var(--bg-color);
     transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .btn-live {
-    background: var(--primary-color);
-    color: var(--bg-color);
+    background: linear-gradient(135deg, var(--primary-color), #a259ff);
+    border: none;
+    color: #fff;
     box-shadow: 0 4px 15px var(--accent-glow);
 }
 
 .btn-live:hover {
-    box-shadow: 0 6px 20px var(--accent-glow);
-    transform: scale(1.05);
+    box-shadow: 0 8px 25px var(--accent-glow);
+    transform: scale(1.05) translateY(-2px);
 }
 
 .btn-youtube {
     background: rgba(255, 0, 0, 0.05);
     color: #ff4444;
     border: 1px solid rgba(255, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+[data-theme="light"] .btn-youtube {
+    background: rgba(255, 0, 0, 0.08);
 }
 
 .btn-youtube:hover {
-    background: rgba(255, 0, 0, 0.15);
-    color: #ff4444;
+    background: #ff4444;
+    color: #fff;
     transform: scale(1.05);
-    border-color: rgba(255, 0, 0, 0.4);
+    border-color: transparent;
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
 }
 
-/* Responsive Modal */
 @media (max-width: 900px) {
-    .hackathon-modal-overlay {
-        padding: 1rem;
-    }
-
+    .hackathon-modal-overlay { padding: 1rem; }
     .hackathon-modal-content {
         flex-direction: column;
         max-height: 95vh;
         overflow-y: auto;
-        /* Base modal is scrollable */
     }
-
     .hackathon-gallery {
         height: 350px;
         min-height: 350px;
         flex: none;
     }
-
     .hackathon-details {
         overflow-y: visible;
-        /* Let inner content spill naturally */
         padding: 2rem;
     }
 }
 
 @media (max-width: 600px) {
-    .hackathon-modal-overlay {
-        padding: 0.5rem;
-    }
-
-    .hackathon-details {
-        padding: 1.5rem;
-    }
-
+    .hackathon-section { padding: 4rem 1rem; }
+    .hackathon-card { flex-direction: column; }
+    .hackathon-image-wrapper { height: 200px; min-height: 200px; }
+    .hackathon-modal-overlay { padding: 0.5rem; }
+    .hackathon-details { padding: 1.5rem; }
     .links-group {
         flex-direction: column;
         gap: 0.8rem;
     }
-
     .hackathon-link-btn {
         width: 100%;
         padding: 0.8rem;
     }
-
     .hackathon-gallery {
         height: 250px;
         min-height: 250px;
     }
-
-    .modal-title {
-        font-size: 1.3rem;
-    }
-
-    .tech-stack {
-        gap: 0.4rem;
-    }
-
+    .modal-title { font-size: 1.3rem; }
+    .tech-stack { gap: 0.4rem; }
     .tech-pill {
         font-size: 0.7rem;
         padding: 0.3rem 0.6rem;

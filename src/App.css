@@ -1,44 +1,54 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* Dark Mode Defaults */
-  --bg-color: #050505;
-  --text-color: #ffffff;
-  --text-secondary: #a0a0a0;
-  --primary-color: #00f3ff;
-  --secondary-color: #ff00ff;
-  --accent-glow: rgba(0, 243, 255, 0.5);
+  /* Dark Mode Defaults - Premium Deep Space */
+  --bg-color: #030305;
+  --text-color: #f7f7f8;
+  --text-secondary: #a3a3a3;
+  --primary-color: #00e5ff;
+  --secondary-color: #bd00ff;
+  --accent-glow: rgba(0, 229, 255, 0.4);
 
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --card-bg: rgba(20, 20, 20, 0.6);
-  --card-shadow: rgba(0, 0, 0, 0.5);
+  /* Unified Glassmorphism System */
+  --glass-bg: rgba(255, 255, 255, 0.02);
+  --glass-bg-hover: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-border-highlight: rgba(255, 255, 255, 0.15);
+  
+  --card-bg: rgba(10, 10, 12, 0.6);
+  --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+  --card-blur: blur(16px);
 
-  --nav-bg: rgba(10, 10, 10, 0.5);
-  --timeline-line: #1a1a1a;
+  --nav-bg: rgba(3, 3, 5, 0.65);
+  --timeline-line: rgba(255, 255, 255, 0.1);
 
   /* Shared Font Family Var */
   --font-main: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Inter', sans-serif;
-  --pattern-color: rgba(255, 255, 255, 0.02);
+  --pattern-color: rgba(255, 255, 255, 0.015);
 }
 
 [data-theme="light"] {
-  --bg-color: #f0f2f5;
-  --text-color: #1a1a1a;
-  --text-secondary: #555555;
-  --primary-color: #0066ff;
-  --secondary-color: #d600d6;
-  --accent-glow: rgba(0, 102, 255, 0.3);
+  /* Light Mode Defaults - Clean & Crisp */
+  --bg-color: #fafafa;
+  --text-color: #0a0a0b;
+  --text-secondary: #5e5e5e;
+  --primary-color: #0055ff;
+  --secondary-color: #b300ea;
+  --accent-glow: rgba(0, 85, 255, 0.2);
 
-  --glass-bg: rgba(255, 255, 255, 0.6);
-  --glass-border: rgba(0, 0, 0, 0.05);
-  --card-bg: rgba(255, 255, 255, 0.8);
-  --card-shadow: rgba(0, 0, 0, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-bg-hover: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(0, 0, 0, 0.04);
+  --glass-border-highlight: rgba(0, 0, 0, 0.1);
+  
+  --card-bg: rgba(255, 255, 255, 0.65);
+  --card-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  --card-blur: blur(16px);
 
-  --nav-bg: rgba(255, 255, 255, 0.7);
-  --timeline-line: #e0e0e0;
-  --pattern-color: rgba(0, 0, 0, 0.05);
+  --nav-bg: rgba(250, 250, 250, 0.75);
+  --timeline-line: rgba(0, 0, 0, 0.08);
+  --pattern-color: rgba(0, 0, 0, 0.03);
 }
 
 * {

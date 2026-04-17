@@ -1,0 +1,182 @@
+.resume-section {
+    padding: 6rem 2rem 2rem 2rem;
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.resume-section::after {
+    content: '';
+    position: absolute;
+    width: 50vw;
+    height: 50vw;
+    border-radius: 50%;
+    filter: blur(140px);
+    z-index: -1;
+    opacity: 0.15;
+    background: var(--secondary-color);
+    bottom: -20%;
+    right: -20%;
+    animation: driftSlow 20s ease-in-out infinite alternate;
+}
+
+@keyframes driftSlow {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(5%, 5%) scale(1.1); }
+}
+
+.resume-section .section-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--text-color);
+    letter-spacing: -1.5px;
+    position: relative;
+}
+
+.resume-section .section-title .highlight {
+    background: linear-gradient(120deg, var(--primary-color), var(--secondary-color) 80%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 20px var(--accent-glow));
+}
+
+.resume-container {
+    display: flex;
+    justify-content: center;
+    max-width: 480px;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.resume-card {
+    background: rgba(15, 15, 20, 0.4);
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    width: 100%;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: block;
+    text-decoration: none;
+    position: relative;
+}
+
+[data-theme="light"] .resume-card {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.resume-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.5), 0 0 30px rgba(189, 0, 255, 0.25);
+    border-color: rgba(189, 0, 255, 0.5);
+}
+
+.resume-preview {
+    height: 220px;
+    background: linear-gradient(135deg, rgba(5, 5, 10, 0.8) 0%, rgba(30, 30, 45, 0.9) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+[data-theme="light"] .resume-preview {
+    background: linear-gradient(135deg, #f0f0f5 0%, #e0e0ea 100%);
+}
+
+.resume-icon {
+    color: var(--primary-color);
+    z-index: 2;
+    filter: drop-shadow(0 10px 20px rgba(0, 229, 255, 0.4));
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform: scale(1);
+}
+
+.resume-card:hover .resume-icon {
+    transform: scale(1.2) rotate(5deg);
+}
+
+.resume-decoration {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 20px,
+        rgba(0, 229, 255, 0.03) 20px,
+        rgba(0, 229, 255, 0.03) 40px
+    );
+    animation: driftSlow 30s linear infinite;
+    z-index: 1;
+}
+
+.resume-info {
+    padding: 1.8rem;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.resume-info h3 {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    letter-spacing: -0.5px;
+}
+
+.resume-info p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+
+
+.resume-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.05); /* Premium glass */
+    color: var(--text-color);
+    padding: 14px 28px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    width: fit-content;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+[data-theme="light"] .resume-cta {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.resume-card:hover .resume-cta {
+    background: var(--text-color);
+    color: var(--bg-color);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 255, 255, 0.2);
+    border-color: transparent;
+}
+
+
+
+@media (max-width: 768px) {
+    .resume-section { padding: 5rem 1rem; }
+    .resume-section .section-title { font-size: 2.5rem; }
+}

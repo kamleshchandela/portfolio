@@ -124,6 +124,26 @@
     padding-top: 1rem;
 }
 
+.cert-highlight-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 215, 0, 0.1);
+    color: #ffd700;
+    padding: 0.4rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+[data-theme="light"] .cert-highlight-badge {
+    background: linear-gradient(135deg, #fff9e6, #fff4cc);
+    color: #b38000;
+    border-color: rgba(255, 215, 0, 0.4);
+}
+
 @media (max-width: 768px) {
     .certificates-section {
         padding: 5rem 1rem;

@@ -293,11 +293,7 @@
     background: var(--glass-bg);
     color: var(--text-color);
     border: 1px solid var(--glass-border);
-    backdrop-filter: blur(10px);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 0.8rem 1.2rem 0.8rem 1.8rem;
+    backdrop-filter: var(--card-blur);
 }
 
 .btn-resume:hover {
@@ -406,44 +402,8 @@
     border-color: var(--primary-color);
 }
 
-/* Animations */
-.fade-in-up {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s forwards;
-}
+/* Animations now handled by framer-motion */
 
-.fade-in-right {
-    opacity: 0;
-    transform: translateX(30px);
-    animation: fadeInRight 0.8s forwards;
-}
-
-.delay-1 {
-    animation-delay: 0.2s;
-}
-
-.delay-2 {
-    animation-delay: 0.4s;
-}
-
-.delay-3 {
-    animation-delay: 0.6s;
-}
-
-@keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInRight {
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
 
 @media (max-width: 1024px) {
     .hero-content {

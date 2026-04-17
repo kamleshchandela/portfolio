@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MessageCircle, X, Send, Bot, Key, Loader2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
-import { portfolioData } from '../utils/portfolioData';
 import './ChatBot.css';
 
 const ChatBot = () => {

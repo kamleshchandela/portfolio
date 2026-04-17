@@ -3,30 +3,25 @@ import { createPortal } from 'react-dom';
 import { MapPin, Clock, Trophy, Github, ExternalLink, Youtube, X, ChevronLeft, ChevronRight, Award, Maximize2 } from 'lucide-react';
 import './Hackathon.css';
 
-// Importing local images
-import teamPhoto from '../images/hackathon/sanjeevani/team-photo.jpg';
-import galleryImg1 from '../images/hackathon/sanjeevani/gallery-1.jpg';
-import galleryImg2 from '../images/hackathon/sanjeevani/gallery-2.jpg';
-
 const hackathon = {
     title: "Sanjeevani — AI Emergency Healthcare Ecosystem",
     shortDescription: "AI-powered emergency platform connecting patients, hospitals & NGOs",
     location: "SU University, Rajasthan",
     duration: "36 Hours",
-    coverPhoto: teamPhoto,
+    coverPhoto: "https://res.cloudinary.com/dhzhzxczn/image/upload/q_auto/f_auto/v1776426144/Screenshot_2026-04-16_191230_v3vfyz.png",
     images: [
-        teamPhoto,
-        galleryImg1,
-        galleryImg2
+        "https://res.cloudinary.com/dhzhzxczn/image/upload/q_auto/f_auto/v1776426144/Screenshot_2026-04-16_191230_v3vfyz.png",
+        "https://res.cloudinary.com/dhzhzxczn/image/upload/q_auto/f_auto/v1776426146/Screenshot_2026-04-16_191218_gml48q.png",
+        "https://res.cloudinary.com/dhzhzxczn/image/upload/q_auto/f_auto/v1776426144/Screenshot_2026-04-16_191241_iaq2te.png"
     ],
     fullDescription: `Built an AI-powered emergency platform connecting patients, hospitals, pharmacies, and NGOs for rapid response and affordable healthcare. Enabled instant medical access via facial recognition and QR-based medical passport. Integrated real-time SOS, GPS tracking, live doctor guidance, video calls, and geo-based blood donor alerts. Implemented WhatsApp reminders for continuous patient support.`,
     teamSize: "4 Members",
     role: "Full-Stack Developer & Team Lead",
     techStack: ["React", "TypeScript", "Tailwind CSS", "Supabase", "PostgreSQL", "Gemini AI", "Leaflet", "Twilio API"],
-    achievement: "Certificate of Merit — Convolve 4.0, Pan-IIT AI/ML Hackathon",
-    github: "https://github.com/kamleshchandela",
-    deployment: "https://chandelakamlesh1.netlify.app",
-    youtube: "https://youtube.com",
+    achievement: "Participation Certificate",
+    github: "https://github.com/kamleshchandela/sanjeevani.git",
+    deployment: "https://sanjeevani-kamleshchandela.netlify.app/",
+    youtube: "https://www.youtube.com/@KamleshChandela-z5e",
 };
 
 const Hackathon = () => {
@@ -84,11 +79,11 @@ const Hackathon = () => {
             <div className="hackathon-container">
                 {/* Hackathon Card */}
                 <div className="hackathon-card" onClick={openModal}>
-                    <div className="hackathon-badge">
-                        <Trophy size={16} /> Winner
-                    </div>
                     <div className="hackathon-image-wrapper">
                         <img src={hackathon.coverPhoto} alt="Hackathon Cover" className="hackathon-image" />
+                        <div className="hackathon-badge">
+                            <Trophy size={16} /> Participation Certificate
+                        </div>
                         <div className="hackathon-hover-overlay">
                             <Maximize2 size={32} />
                             <span>View Details</span>
