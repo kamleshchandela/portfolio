@@ -2,8 +2,29 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Code2, Database, Palette, FileCode, Terminal, GitBranch, Github, Atom, Server, Cpu, Figma, Cloud, Wrench, Globe, Layout } from 'lucide-react';
 import './Skills.css';
+import { useSoundEnabled } from '../context/SoundContext';
+
+// Plays a soft ping only when sound is enabled globally
+const playHoverTone = () => {
+    try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(440, ctx.currentTime + 0.12);
+        gain.gain.setValueAtTime(0.12, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.18);
+        osc.start(ctx.currentTime);
+        osc.stop(ctx.currentTime + 0.18);
+    } catch (e) { /* silently ignore */ }
+};
 
 const Skills = () => {
+    const { muted } = useSoundEnabled();
+    const handleCardHover = () => { if (!muted) playHoverTone(); };
     const frontend = [
         { icon: <FileCode size={32} />, name: "HTML5", color: "#E34F26" },
         { icon: <Palette size={32} />, name: "CSS3", color: "#1572B6" },
@@ -51,6 +72,7 @@ const Skills = () => {
                 {skillsArray.map((skill, index) => (
                     <motion.div 
                         whileHover={{ y: -3 }}
+                        onMouseEnter={handleCardHover}
                         className="skill-card" 
                         key={index} 
                         style={{ '--accent-color': skill.color }}

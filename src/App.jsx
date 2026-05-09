@@ -20,6 +20,7 @@ import SoundToggle from './components/SoundToggle';
 import ChatBot from './components/ChatBot';
 import ThemeRope from './components/ThemeRope';
 import { useSound } from './hooks/useSound';
+import { SoundContext } from './context/SoundContext';
 import InfinityStones from './components/InfinityStones';
 import SEOHead from './components/SEOHead';
 
@@ -185,6 +186,7 @@ function App() {
   }, [location.pathname, loading]);
 
   return (
+    <SoundContext.Provider value={{ muted }}>
     <div className="app">
       {/* Dynamic SEO — title & description change per route */}
       <SEOHead
@@ -216,6 +218,7 @@ function App() {
         </>
       )}
     </div>
+    </SoundContext.Provider>
   );
 }
 

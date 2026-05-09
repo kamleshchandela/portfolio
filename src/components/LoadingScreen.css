@@ -1,67 +1,360 @@
-.loading-screen {
+/* 
+ * THEMED LOADING SCREEN
+ * Matches App.css Premium Glassmorphism & Neon Theme
+ */
+:root {
+    --cn-radius: 110px;
+    --cn-gapX: 35px;
+    --cn-gapY: 45px;
+}
+
+@media (min-width: 768px) {
+    :root {
+        --cn-radius: 160px;
+        --cn-gapX: 55px;
+        --cn-gapY: 70px;
+    }
+}
+
+.cn-loading-screen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: #000;
+    background: transparent;
     z-index: 10000;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    font-family: var(--font-main), sans-serif;
+    overflow: hidden;
+    color: var(--text-color);
 }
 
-.loading-content {
-    width: 300px;
-    text-align: center;
+.cn-loading-screen::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--bg-color);
+    background: radial-gradient(circle at center, var(--card-bg) 0%, var(--bg-color) 70%);
+    z-index: -1;
+    transition: opacity 0.5s ease;
 }
 
-.loading-logo {
-    font-size: 2rem;
+.cn-loading-screen.fade-out {
+    pointer-events: none;
+}
+
+.cn-loading-screen.fade-out::before,
+.cn-loading-screen.fade-out .cn-coin-inner,
+.cn-loading-screen.fade-out .cn-final-text {
+    opacity: 0 !important;
+    transition: opacity 0.5s ease;
+}
+
+/* -----------------------------
+   Phase 0 & 1: Tire / Coin Container
+------------------------------ */
+.cn-coin-wrapper {
+    position: absolute;
+    top: 50%;
+    left: -200px;
+    transform: translateY(-50%) translateX(0) rotate(0deg);
+    animation: roll-in 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes roll-in {
+    0% { left: -200px; transform: translateY(-50%) translateX(0) rotate(0deg); }
+    70% { left: 100vw; transform: translateY(-50%) translateX(-150px) rotate(1080deg); }
+    100% { left: 50%; transform: translateY(-50%) translateX(-50%) rotate(720deg); }
+}
+
+/* -----------------------------
+   The Hollow Ring (Drops in Phase 2)
+------------------------------ */
+.cn-coin-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(var(--cn-radius) * 2.8);
+    height: calc(var(--cn-radius) * 2.8);
+    transform: translate(-50%, -50%);
+    
+    /* Sleek Neon Ring */
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 6px var(--bg-color), inset 0 0 0 8px var(--secondary-color), 0 0 20px var(--accent-glow), inset 0 0 20px rgba(189, 0, 255, 0.4);
+    background: var(--glass-bg);
+    backdrop-filter: var(--card-blur);
+}
+
+/* Phase 2: Ring Drops */
+.phase-2 .cn-coin-inner,
+.phase-3 .cn-coin-inner,
+.phase-4 .cn-coin-inner,
+.phase-5 .cn-coin-inner,
+.phase-6 .cn-coin-inner {
+    animation: ring-drop 1.0s forwards cubic-bezier(0.55, 0.085, 0.68, 0.53);
+}
+
+@keyframes ring-drop {
+    0% { transform: translate(-50%, -50%); opacity: 1; }
+    100% { transform: translate(-50%, 150vh); opacity: 0; }
+}
+
+/* -----------------------------
+   Letters Structure
+------------------------------ */
+.cn-letter-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform: translate(
+        calc(var(--cx-mult) * var(--cn-radius)), 
+        calc(var(--cy-mult) * var(--cn-radius))
+    ) rotate(var(--cr));
+    transition: transform 1.0s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Phase 2: Transition to Horizontal Layout */
+.phase-2 .cn-letter-wrapper,
+.phase-3 .cn-letter-wrapper,
+.phase-4 .cn-letter-wrapper {
+    transform: translate(
+        calc(var(--hx-mult) * var(--cn-gapX)), 
+        calc(var(--hy-mult) * var(--cn-gapY))
+    ) rotate(0deg);
+}
+
+/* Phase 5: Move K and C to center for logo slam */
+.cn-letter-wrapper.logo-form.keep-k {
+    transform: translate(-30px, 0) rotate(0deg) !important;
+}
+.cn-letter-wrapper.logo-form.keep-c {
+    transform: translate(30px, 0) rotate(0deg) !important;
+}
+
+@media (min-width: 768px) {
+    .cn-letter-wrapper.logo-form.keep-k {
+        transform: translate(-60px, 0) rotate(0deg) !important;
+    }
+    .cn-letter-wrapper.logo-form.keep-c {
+        transform: translate(60px, 0) rotate(0deg) !important;
+    }
+}
+
+.cn-letter-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 36px;
+    height: 36px;
+    font-size: 26px;
+    
     font-weight: 800;
-    letter-spacing: 4px;
-    margin-bottom: 2rem;
+    font-family: var(--font-main), sans-serif;
+    text-transform: uppercase;
+    transition: all 0.5s ease;
+    
+    /* Sleek transparent text with neon outline */
+    color: transparent;
+    -webkit-text-stroke: 1px var(--primary-color);
+    text-shadow: 0px 0px 8px var(--accent-glow);
+    background: transparent;
+}
+
+@media (min-width: 768px) {
+    .cn-letter-box {
+        width: 60px;
+        height: 60px;
+        font-size: 40px;
+        -webkit-text-stroke: 1.5px var(--primary-color);
+    }
+}
+
+/* -----------------------------
+   Phase 3: Glassmorphism Morph
+------------------------------ */
+.phase-3 .cn-letter-box, 
+.phase-4 .cn-letter-box, 
+.phase-5 .cn-letter-box,
+.phase-6 .cn-letter-box {
+    -webkit-text-stroke: 0px;
+    text-shadow: none;
+    backdrop-filter: var(--card-blur);
+}
+
+.phase-3 .cn-letter-box.even, 
+.phase-4 .cn-letter-box.even, 
+.phase-5 .cn-letter-box.even,
+.phase-6 .cn-letter-box.even {
+    background: var(--glass-bg);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 4px 15px var(--accent-glow);
+    animation: snap-upright 0.3s forwards;
+    border-radius: 8px;
+}
+
+.phase-3 .cn-letter-box.odd, 
+.phase-4 .cn-letter-box.odd, 
+.phase-5 .cn-letter-box.odd,
+.phase-6 .cn-letter-box.odd {
+    background: var(--glass-bg);
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    box-shadow: 0 4px 15px rgba(189, 0, 255, 0.2);
+    animation: snap-upright 0.3s forwards;
+    border-radius: 8px;
+}
+
+@keyframes snap-upright {
+    0% { transform: translate(-50%, -50%) rotate(45deg) scale(0.5); }
+    100% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+}
+
+/* -----------------------------
+   Phase 4: Gravity Drop
+------------------------------ */
+.phase-4 .cn-letter-box.drop {
+    animation: gravity-fall 1s forwards cubic-bezier(0.55, 0.085, 0.68, 0.53);
+}
+
+@keyframes gravity-fall {
+    0% { transform: translate(-50%, -50%) rotate(0deg); opacity: 1; }
+    100% { transform: translate(-50%, 100vh) rotate(180deg); opacity: 0; }
+}
+
+/* -----------------------------
+   Phase 5: Logo Formation
+------------------------------ */
+.phase-5 .cn-letter-box.drop,
+.phase-6 .cn-letter-box.drop {
+    display: none;
+}
+
+.phase-5 .cn-letter-box.keep {
+    width: 60px;
+    height: 60px;
+    font-size: 40px;
+    animation: slam-logo 0.5s ease-out forwards;
+    border-radius: 12px;
+}
+
+@media (min-width: 768px) {
+    .phase-5 .cn-letter-box.keep {
+        width: 120px;
+        height: 120px;
+        font-size: 80px;
+        border-radius: 20px;
+    }
+}
+
+.phase-5 .cn-letter-box.keep.even,
+.phase-6 .cn-letter-box.keep.even {
+    /* 'K' Block */
+    background: color-mix(in srgb, var(--primary-color) 15%, transparent);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 0 30px var(--accent-glow);
+}
+
+.phase-5 .cn-letter-box.keep.odd,
+.phase-6 .cn-letter-box.keep.odd {
+    /* 'C' Block */
+    background: color-mix(in srgb, var(--secondary-color) 15%, transparent);
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+    box-shadow: 0 0 30px color-mix(in srgb, var(--secondary-color) 40%, transparent);
+}
+
+.cn-final-text {
+    position: absolute;
+    bottom: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-main), sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 6px;
+    
+    /* Theme Gradient Text */
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     -webkit-background-clip: text;
     background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: pulse 1.5s infinite alternate;
+    color: transparent;
+    
+    opacity: 0;
+    animation: fade-in-up 0.5s 0.2s forwards;
+    text-align: center;
+    width: 100vw;
 }
 
-.loading-bar-container {
-    width: 100%;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 1rem;
-    position: relative;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.loading-bar {
-    height: 100%;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-    transition: width 0.2s ease-out;
-    box-shadow: 0 0 10px var(--primary-color);
-}
-
-.loading-text {
-    font-family: 'Courier New', monospace;
-    color: var(--primary-color);
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-}
-
-@keyframes pulse {
-    0% {
-        opacity: 0.6;
-        text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+@media (min-width: 768px) {
+    .cn-final-text {
+        bottom: -200px;
+        font-size: 28px;
+        letter-spacing: 10px;
     }
+}
 
-    100% {
-        opacity: 1;
-        text-shadow: 0 0 20px rgba(0, 243, 255, 0.8);
+@keyframes fade-in-up {
+    from { opacity: 0; transform: translate(-50%, 20px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes slam-logo {
+    0% { transform: translate(-50%, -50%) scale(1.5) translateY(-50px) rotate(0deg); opacity: 0.5; }
+    100% { transform: translate(-50%, -50%) scale(1) translateY(0) rotate(0deg); opacity: 1; }
+}
+
+/* -----------------------------
+   Phase 6: Flight to Navbar
+------------------------------ */
+
+/* Match the Navbar logo block perfectly */
+.phase-6 .cn-letter-box.keep {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 20px !important;
+    border-radius: 8px !important;
+    border-width: 1.5px !important;
+    box-shadow: 0 0 10px var(--accent-glow) !important;
+    transition: all 0.8s cubic-bezier(0.8, 0, 0.2, 1) !important;
+}
+.phase-6 .cn-letter-box.keep.odd {
+    box-shadow: 0 0 10px color-mix(in srgb, var(--secondary-color) 40%, transparent) !important;
+}
+
+/* Mobile Flight Path */
+@media (max-width: 768px) {
+    .phase-6 .cn-letter-wrapper.logo-form.keep-k {
+        transform: translate(calc(4vw + 33.28px - 50vw), calc(53px - 50vh)) rotate(0deg) !important;
+        transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1) !important;
+    }
+    .phase-6 .cn-letter-wrapper.logo-form.keep-c {
+        transform: translate(calc(4vw + 65.28px - 50vw), calc(53px - 50vh)) rotate(0deg) !important;
+        transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1) !important;
+    }
+}
+
+/* Desktop Flight Path */
+@media (min-width: 769px) {
+    .phase-6 .cn-letter-wrapper.logo-form.keep-k {
+        transform: translate(calc(max(3vw, 50vw - 700px) + 40px - 50vw), calc(54px - 50vh)) rotate(0deg) !important;
+        transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1) !important;
+    }
+    .phase-6 .cn-letter-wrapper.logo-form.keep-c {
+        transform: translate(calc(max(3vw, 50vw - 700px) + 72px - 50vw), calc(54px - 50vh)) rotate(0deg) !important;
+        transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1) !important;
     }
 }

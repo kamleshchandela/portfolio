@@ -145,14 +145,12 @@ const ChatBot = () => {
                 <div className="chatbot-window">
                     <div className="chatbot-header">
                         <div className="chatbot-title">
-                            <Bot size={20} />
+                            <Bot size={18} />
                             <span>Portfolio AI</span>
                         </div>
-                        <div style={{ display: 'flex', gap: '5px' }}>
-                            <button onClick={() => setIsOpen(false)} className="close-btn">
-                                <X size={20} />
-                            </button>
-                        </div>
+                        <button onClick={() => setIsOpen(false)} className="close-btn">
+                            <X size={16} />
+                        </button>
                     </div>
 
                     <div className="chatbot-messages">

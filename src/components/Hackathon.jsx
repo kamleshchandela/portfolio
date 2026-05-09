@@ -2,6 +2,37 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { MapPin, Clock, Trophy, Github, ExternalLink, Youtube, X, ChevronLeft, ChevronRight, Award, Maximize2 } from 'lucide-react';
 import './Hackathon.css';
+import { useSoundEnabled } from '../context/SoundContext';
+
+// Premium 3-note rising arpeggio — energetic & hackathon-worthy
+const playHoverTone = () => {
+    try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        const ctx = new AudioCtx();
+
+        // Three notes: C5 → E5 → G5 (major chord arpeggio — uplifting & victorious)
+        const notes = [523.25, 659.25, 783.99];
+        const stagger = 0.08; // seconds between each note
+
+        notes.forEach((freq, i) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+
+            osc.type = 'sine';
+            const startTime = ctx.currentTime + i * stagger;
+
+            osc.frequency.setValueAtTime(freq, startTime);
+            gain.gain.setValueAtTime(0, startTime);
+            gain.gain.linearRampToValueAtTime(0.1, startTime + 0.02);   // sharp attack
+            gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.35); // smooth decay
+
+            osc.start(startTime);
+            osc.stop(startTime + 0.4);
+        });
+    } catch (e) { /* silently ignore if browser blocks audio */ }
+};
 
 const hackathon = {
     title: "Sanjeevani — AI Emergency Healthcare Ecosystem",
@@ -25,6 +56,8 @@ const hackathon = {
 };
 
 const Hackathon = () => {
+    const { muted } = useSoundEnabled();
+    const handleCardHover = () => { if (!muted) playHoverTone(); };
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentImgIndex, setCurrentImgIndex] = useState(0);
 
@@ -78,7 +111,7 @@ const Hackathon = () => {
             
             <div className="hackathon-container">
                 {/* Hackathon Card */}
-                <div className="hackathon-card" onClick={openModal}>
+                <div className="hackathon-card" onClick={openModal} onMouseEnter={handleCardHover}>
                     <div className="hackathon-image-wrapper">
                         <img src={hackathon.coverPhoto} alt="Hackathon Cover" className="hackathon-image" />
                         <div className="hackathon-badge">

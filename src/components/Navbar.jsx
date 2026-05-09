@@ -54,37 +54,49 @@ const Navbar = ({ theme, toggleTheme }) => {
     return (
         <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
             <div className="nav-container">
-                <div className="nav-logo" onClick={() => handleNavigation('home')}>KC</div>
+                {/* Left: Logo */}
+                <div className="nav-logo-container" onClick={() => handleNavigation('home')}>
+                    <div className="nav-logo-block even">K</div>
+                    <div className="nav-logo-block odd">C</div>
+                </div>
 
-                {/* Mobile Toggle */}
-                <button
-                    className="mobile-menu-toggle"
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    aria-label="Toggle Menu"
-                >
-                    {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
+                {/* Right: Links & Utilities */}
+                <div className="nav-content-right">
+                    <div className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
+                        {['home', 'skills', 'projects', 'figma-designs', 'hackathon', 'certificates', 'videos', 'experience', 'resume', 'contact'].map((item) => (
+                            <button
+                                key={item}
+                                onClick={() => handleNavigation(item)}
+                                className={`nav-link ${activeSection === item ? 'active' : ''}`}
+                            >
+                                <span className="nav-text">
+                                    {item === 'figma-designs' ? 'Figma-designs' : item.charAt(0).toUpperCase() + item.slice(1)}
+                                    
+                                    {/* Active Neon Underline */}
+                                    {activeSection === item && (
+                                        <motion.div
+                                            layoutId="nav-active-underline"
+                                            className="nav-active-underline"
+                                            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                        />
+                                    )}
+                                </span>
+                            </button>
+                        ))}
+                    </div>
 
-                {/* Nav Links (Desktop + Mobile) */}
-                <div className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
-                    {['home', 'skills', 'projects', 'figma-designs', 'hackathon', 'certificates', 'videos', 'experience', 'resume', 'contact'].map((item) => (
-                        <button
-                            key={item}
-                            onClick={() => handleNavigation(item)}
-                            className={`nav-link ${activeSection === item ? 'active' : ''}`}
-                        >
-                            {item.charAt(0).toUpperCase() + item.slice(1)}
-                            {activeSection === item && (
-                                <motion.div
-                                    layoutId="navbar-indicator"
-                                    className="navbar-active-indicator"
-                                />
-                            )}
+                    <div className="nav-utilities">
+                        <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle Theme">
+                            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
                         </button>
-                    ))}
-                    <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle Theme">
-                        {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-                    </button>
+                        <button
+                            className="mobile-menu-toggle"
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            aria-label="Toggle Menu"
+                        >
+                            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                        </button>
+                    </div>
                 </div>
             </div>
         </nav>

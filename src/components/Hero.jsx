@@ -72,9 +72,9 @@ const Hero = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.7, delay: 0.3 }}
                         className="hero-name glitch" 
-                        data-text="Kamlesh"
+                        data-text="Kamlesh Chandela"
                     >
-                        Kamlesh
+                        Kamlesh Chandela
                     </motion.h1>
                     <motion.h3 
                         initial={{ opacity: 0 }}
