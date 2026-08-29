@@ -22,3 +22,14 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Sensitive data
+.env
+
+# Test and scratch scripts
+list-models-http.js
+model_output.txt
+simple-test.js
+test-generate-http.js
+test-models.js
+
